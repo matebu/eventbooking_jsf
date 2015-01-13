@@ -8,27 +8,6 @@
 
 <h:head>
 	<h:outputStylesheet name="common-style.css" library="css" />
-	<style type="text/css">
-#space {
-	width: 20%;
-	display: table-cell;
-}
-	
-#sidebar {
-	width: 15%;
-	display: table-cell;
-}
-
-#content {
-    padding: 15px;
-	width: 45%;
-	display: table-cell;
-}
-
-#page {
-	width: 100%;
-}
-</style>
 </h:head>
 <f:facet name="first">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -55,36 +34,32 @@
 
 </f:facet>
 <h:body>
-
-	<div id="page">
-
-		<div id="header">
+	<b:row styleClass="show-grid">
+		<b:column span="8" offset="2">
 			<ui:insert name="header">
 				<ui:include src="/pages/template/commonHeader.xhtml" />
 			</ui:insert>
-		</div>
-
-		<div id="space"/>
-		<div id="sidebar">
+		</b:column>
+	</b:row>
+	<b:row styleClass="show-grid">
+		<b:column span="2" offset="2">
 			<ui:insert name="sidebar">
 				<ui:include src="/pages/template/commonSidebar.xhtml" />
 			</ui:insert>
-		</div>
-
-		<div id="content">
+		</b:column>
+		<b:column span="6">
 			<ui:insert name="content">
 				<ui:include src="/pages/template/commonContent.xhtml" />
 			</ui:insert>
-		</div>
-		<div id="space"/>
+		</b:column>
+	</b:row>
 
-		<div id="footer">
+	<b:row styleClass="show-grid">
+		<b:column span="8" offset="2">
 			<ui:insert name="footer">
 				<ui:include src="/pages/template/commonFooter.xhtml" />
 			</ui:insert>
-		</div>
-
-	</div>
-
+		</b:column>
+	</b:row>
 </h:body>
 </html>

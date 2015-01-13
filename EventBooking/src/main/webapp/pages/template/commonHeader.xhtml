@@ -21,21 +21,26 @@
 </head>
 <body>
 	<ui:composition>
-		<b:navBar brand="Brand" brandHref="#">
-			<b:navbarLinks>
-				<b:navLink value="Home" href="#"></b:navLink>
-				<b:navLink value="Link" href="#"></b:navLink>
-				<b:navLink value="Link" href="#"></b:navLink>
-				<b:dropMenu value="Dropdown">
-					<b:navLink value="Action" href="#"></b:navLink>
-					<b:navLink value="Another action" href="#"></b:navLink>
-					<b:navLink value="Something else here" href="#"></b:navLink>
-					<b:navLink></b:navLink>
-					<b:navLink header="Nav header"></b:navLink>
-					<b:navLink value="Separated link" href="#"></b:navLink>
-					<b:navLink value="One more separated link" href="#"></b:navLink>
-				</b:dropMenu>
-			</b:navbarLinks>
+		<b:navBar brand="Home"
+			brandHref="/EventBooking/pages/unsecure/index.jsf">
+			<div class="container">
+				<ul class="nav navbar-nav">
+					<b:dropMenu value="User profile">
+						<b:navLink header="Profile information"></b:navLink>
+						<b:navLink value="Edit profile" href="#"></b:navLink>
+						<b:navLink></b:navLink>
+						<b:navLink header="Orders management"></b:navLink>
+						<b:navLink value="Valid orders" href="#"></b:navLink>
+						<b:navLink value="Orders history" href="#"></b:navLink>
+					</b:dropMenu>
+					<b:navLink value="Events" href="#"></b:navLink>
+					<b:navLink value="Tickets" href="#"></b:navLink>
+				</ul>
+				<ul class="nav navbar-nav pull-right">
+					<b:navLink value="Login" href="#" />
+					<b:navLink value="Register" href="/pages/unsecure/register.jsf" />
+				</ul>
+			</div>
 		</b:navBar>
 	</ui:composition>
 </body>

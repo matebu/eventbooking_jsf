@@ -1,10 +1,78 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags">
+<h:head>
+	<style type="text/css">
+errorMsg {
+	font-size: 2px;
+}
+</style>
+</h:head>
+<h:body>
+	<ui:composition template="/pages/template/commonLayout.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h4 class="panel-title">User registration form</h4>
+					</div>
+					<div class="panel-body">
+						<table>
+							<tr>
+								<td><h:outputLabel for="login" value="Login : " /></td>
+								<td><p:inputText id="login" value="#{userMB.login}">
+										<f:validateLength minimum="5" />
+										<p:ajax event="blur" update="loginMsg" />
+									</p:inputText></td>
+								<td><p:message id="loginMsg" for="login" /></td>
+							</tr>
+							<tr>
+								<td><h:outputLabel for="password" value="Password : " /></td>
+								<td><p:password id="password" value="#{userMB.password}">
+										<f:validateLength minimum="5" />
+										<p:ajax event="blur" update="passwordMsg" />
+									</p:password> <p:message id="passwordMsg" for="password" display="icon" /></td>
+							</tr>
+							<tr>
+								<td><h:outputLabel for="email" value="Email : " /></td>
+								<td><p:inputText id="email" value="#{userMB.email}">
+										<f:validateLength minimum="5" />
+										<p:ajax event="blur" update="emailMsg" />
+									</p:inputText> <p:message id="emailMsg" for="email" display="icon" /></td>
+							</tr>
+							<tr>
+								<td><h:outputLabel for="name" value="Name : " /></td>
+								<td><p:inputText id="name" value="#{userMB.name}">
+										<f:validateLength minimum="5" />
+										<p:ajax event="blur" update="nameMsg" />
+									</p:inputText> <p:message id="nameMsg" for="name" display="icon" /></td>
+							</tr>
+							<tr>
+								<td><h:outputLabel for="surname" value="Surname : " /></td>
+								<td><p:inputText id="surname" value="#{userMB.surname}">
+										<f:validateLength minimum="5" />
+										<p:ajax event="blur" update="surnameMsg" />
+									</p:inputText> <p:message id="surnameMsg" for="surname" display="icon" /></td>
+							</tr>
+							<tr>
+								<td><p:commandButton id="addUser" value="Add"
+										action="#{userMB.addUser}" ajax="false" /></td>
+								<td><p:commandButton id="reset" value="Reset"
+										action="#{userMB.reset}" ajax="false" /></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</h:form>
+			<p:graphicImage value="#{ticketMB.code}" />
+		</ui:define>
+	</ui:composition>
+</h:body>
 
-</body>
 </html>

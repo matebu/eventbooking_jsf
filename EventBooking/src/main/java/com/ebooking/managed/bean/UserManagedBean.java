@@ -54,7 +54,7 @@ public class UserManagedBean implements Serializable {
 			UserRole ur = getUserService().findRoleByName("ROLE_USER");
 			user.setUserRole(ur);
 			getUserService().addUser(user);
-			return "/pages/success.jsf";
+			return SUCCESS;
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		} 	
