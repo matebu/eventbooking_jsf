@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<h:outputStylesheet name="common-style.css" library="css" />
+	<style type="text/css">
+#space {
+	width: 20%;
+	display: table-cell;
+}
+	
+#sidebar {
+	width: 15%;
+	display: table-cell;
+}
+
+#content {
+    padding: 15px;
+	width: 45%;
+	display: table-cell;
+}
+
+#page {
+	width: 100%;
+}
+</style>
+</h:head>
+<f:facet name="first">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>EventBooking</title>
+</f:facet>
+
+<f:facet name="middle">
+	<h:outputStylesheet name="/resources/bootstrap/css/bootstrap.css" />
+
+	<h:outputStylesheet name="/resources/css/dashboard.css" />
+
+	<h:outputScript name="/resources/bootstrap/js/bootstrap.min.js" />
+
+	<h:outputScript library="primefaces" name="jquery/jquery.js"
+		target="head" />
+
+	<h:outputScript name="/resources/bootstrap/js/bootstrap.js" />
+</f:facet>
+
+<f:facet name="last">
+
+</f:facet>
+<h:body>
+
+	<div id="page">
+
+		<div id="header">
+			<ui:insert name="header">
+				<ui:include src="/pages/template/commonHeader.xhtml" />
+			</ui:insert>
+		</div>
+
+		<div id="space"/>
+		<div id="sidebar">
+			<ui:insert name="sidebar">
+				<ui:include src="/pages/template/commonSidebar.xhtml" />
+			</ui:insert>
+		</div>
+
+		<div id="content">
+			<ui:insert name="content">
+				<ui:include src="/pages/template/commonContent.xhtml" />
+			</ui:insert>
+		</div>
+		<div id="space"/>
+
+		<div id="footer">
+			<ui:insert name="footer">
+				<ui:include src="/pages/template/commonFooter.xhtml" />
+			</ui:insert>
+		</div>
+
+	</div>
+
+</h:body>
+</html>

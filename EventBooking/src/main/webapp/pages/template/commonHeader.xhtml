@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type"
+	content="text/html; charset=windows-1252" />
+<style>
+.marginTop {
+	margin-top: 20px;
+}
+
+.textBold {
+	font-weight: bold;
+}
+</style>
+</head>
+<body>
+	<ui:composition>
+		<b:navBar brand="Brand" brandHref="#">
+			<b:navbarLinks>
+				<b:navLink value="Home" href="#"></b:navLink>
+				<b:navLink value="Link" href="#"></b:navLink>
+				<b:navLink value="Link" href="#"></b:navLink>
+				<b:dropMenu value="Dropdown">
+					<b:navLink value="Action" href="#"></b:navLink>
+					<b:navLink value="Another action" href="#"></b:navLink>
+					<b:navLink value="Something else here" href="#"></b:navLink>
+					<b:navLink></b:navLink>
+					<b:navLink header="Nav header"></b:navLink>
+					<b:navLink value="Separated link" href="#"></b:navLink>
+					<b:navLink value="One more separated link" href="#"></b:navLink>
+				</b:dropMenu>
+			</b:navbarLinks>
+		</b:navBar>
+	</ui:composition>
+</body>
+</html>
