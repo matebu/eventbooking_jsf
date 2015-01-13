@@ -42,7 +42,7 @@ public class LoginManagedBean implements Serializable {
 
     public String logout(){
         SecurityContextHolder.clearContext();
-        return "loggedout";
+        return "/pages/unsecure/index.jsf";
     }
  
     public AuthenticationManager getAuthenticationManager() {

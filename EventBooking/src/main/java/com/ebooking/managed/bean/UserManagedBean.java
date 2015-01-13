@@ -54,12 +54,11 @@ public class UserManagedBean implements Serializable {
 			UserRole ur = getUserService().findRoleByName("ROLE_USER");
 			user.setUserRole(ur);
 			getUserService().addUser(user);
-			return SUCCESS;
+			return "/pages/unsecure/index.jsf";
 		} catch (DataAccessException e) {
 			e.printStackTrace();
+			return "/pages/unsecure/index.jsf";
 		} 	
-		
-		return ERROR;
 	}
 	
 	/**

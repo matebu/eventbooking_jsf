@@ -5,14 +5,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
 	xmlns:sec="http://www.springframework.org/security/tags">
 <h:head>
-	<style type="text/css">
-errorMsg {
-	font-size: 2px;
-}
-</style>
+	<h:outputStylesheet name="common-style.css" library="css" />
 </h:head>
 <h:body>
 	<ui:composition template="/pages/template/commonLayout.xhtml">
@@ -23,50 +19,111 @@ errorMsg {
 						<h4 class="panel-title">User registration form</h4>
 					</div>
 					<div class="panel-body">
-						<table>
-							<tr>
-								<td><h:outputLabel for="login" value="Login : " /></td>
-								<td><p:inputText id="login" value="#{userMB.login}">
-										<f:validateLength minimum="5" />
+						<div style="margin: 10px">
+							<b:row styleClass="show-grid">
+								<b:column span="1">
+									<div style="margin-top: 5px">
+										<h:outputLabel for="login" value="Login" />
+									</div>
+								</b:column>
+								<b:column span="5">
+									<p:inputText id="login" value="#{userMB.login}">
+										<f:validateLength minimum="3" />
 										<p:ajax event="blur" update="loginMsg" />
-									</p:inputText></td>
-								<td><p:message id="loginMsg" for="login" /></td>
-							</tr>
-							<tr>
-								<td><h:outputLabel for="password" value="Password : " /></td>
-								<td><p:password id="password" value="#{userMB.password}">
+									</p:inputText>
+								</b:column>
+								<b:column span="6">
+									<p:message id="loginMsg" for="login" />
+								</b:column>
+							</b:row>
+						</div>
+						<div style="margin: 10px">
+							<b:row styleClass="show-grid">
+								<b:column span="1">
+									<div style="margin-top: 5px">
+										<h:outputLabel for="password" value="Password" />
+									</div>
+								</b:column>
+								<b:column span="5">
+									<p:password id="password" value="#{userMB.password}">
 										<f:validateLength minimum="5" />
 										<p:ajax event="blur" update="passwordMsg" />
-									</p:password> <p:message id="passwordMsg" for="password" display="icon" /></td>
-							</tr>
-							<tr>
-								<td><h:outputLabel for="email" value="Email : " /></td>
-								<td><p:inputText id="email" value="#{userMB.email}">
+									</p:password>
+								</b:column>
+								<b:column span="6">
+									<p:message id="passwordMsg" for="password" display="icon" />
+								</b:column>
+							</b:row>
+						</div>
+						<div style="margin: 10px">
+							<b:row styleClass="show-grid">
+								<b:column span="1">
+									<div style="margin-top: 5px">
+										<h:outputLabel for="email" value="Email" />
+									</div>
+								</b:column>
+								<b:column span="5">
+									<p:inputText id="email" value="#{userMB.email}">
 										<f:validateLength minimum="5" />
 										<p:ajax event="blur" update="emailMsg" />
-									</p:inputText> <p:message id="emailMsg" for="email" display="icon" /></td>
-							</tr>
-							<tr>
-								<td><h:outputLabel for="name" value="Name : " /></td>
-								<td><p:inputText id="name" value="#{userMB.name}">
-										<f:validateLength minimum="5" />
+									</p:inputText>
+								</b:column>
+								<b:column span="6">
+									<p:message id="emailMsg" for="email" display="icon" />
+								</b:column>
+							</b:row>
+						</div>
+						<div style="margin: 10px">
+							<b:row styleClass="show-grid">
+								<b:column span="1">
+									<div style="margin-top: 5px">
+										<h:outputLabel for="name" value="Name" />
+									</div>
+								</b:column>
+								<b:column span="5">
+									<p:inputText id="name" value="#{userMB.name}">
+										<f:validateLength minimum="3" />
 										<p:ajax event="blur" update="nameMsg" />
-									</p:inputText> <p:message id="nameMsg" for="name" display="icon" /></td>
-							</tr>
-							<tr>
-								<td><h:outputLabel for="surname" value="Surname : " /></td>
-								<td><p:inputText id="surname" value="#{userMB.surname}">
-										<f:validateLength minimum="5" />
+									</p:inputText>
+								</b:column>
+								<b:column span="6">
+									<p:message id="nameMsg" for="name" display="icon" />
+								</b:column>
+							</b:row>
+						</div>
+						<div style="margin: 10px">
+							<b:row styleClass="show-grid">
+								<b:column span="1">
+									<div style="margin-top: 5px">
+										<h:outputLabel for="surname" value="Surname" />
+									</div>
+								</b:column>
+
+								<b:column span="5">
+									<p:inputText id="surname" value="#{userMB.surname}">
+										<f:validateLength minimum="2" />
 										<p:ajax event="blur" update="surnameMsg" />
-									</p:inputText> <p:message id="surnameMsg" for="surname" display="icon" /></td>
-							</tr>
-							<tr>
-								<td><p:commandButton id="addUser" value="Add"
-										action="#{userMB.addUser}" ajax="false" /></td>
-								<td><p:commandButton id="reset" value="Reset"
-										action="#{userMB.reset}" ajax="false" /></td>
-							</tr>
-						</table>
+									</p:inputText>
+								</b:column>
+								<b:column span="6">
+									<p:message id="surnameMsg" for="surname" display="icon" />
+								</b:column>
+							</b:row>
+						</div>
+						<div style="margin: 10px">
+							<b:row styleClass="show-grid">
+								<b:column span="2">
+									<div style="text-align: center;">
+										<p:commandButton id="addUser" value="Add" style="width: 116%;"
+											action="#{userMB.addUser}" ajax="false" />
+									</div>
+								</b:column>
+								<b:column span="2">
+									<p:commandButton id="reset" value="Reset" style="width: 116%;"
+										action="#{userMB.reset}" ajax="false" />
+								</b:column>
+							</b:row>
+						</div>
 					</div>
 				</div>
 			</h:form>
