@@ -1,10 +1,113 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags">
+<h:head>
+	<h:outputStylesheet name="common-style.css" library="css" />
+</h:head>
+<h:body>
+	<ui:composition template="/pages/template/commonLayout.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h4 class="panel-title">User registration form</h4>
+					</div>
+					<div class="panel-body">
+						<div style="margin: 10px">
+							<b:row styleClass="show-grid">
+								<b:column span="1">
+									<div style="margin-top: 5px">
+										<h:outputLabel for="name" value="Name" />
+									</div>
+								</b:column>
+								<b:column span="5">
+									<p:inputText id="name" value="#{eventMB.name}">
+										<f:validateLength minimum="3" />
+										<p:ajax event="blur" update="nameMsg" />
+									</p:inputText>
+								</b:column>
+								<b:column span="6">
+									<p:message id="nameMsg" for="name" />
+								</b:column>
+							</b:row>
+						</div>
+						<div style="margin: 10px">
+							<b:row styleClass="show-grid">
+								<b:column span="1">
+									<div style="margin-top: 5px">
+										<h:outputLabel for="description" value="Description" />
+									</div>
+								</b:column>
+								<b:column span="5">
+									<p:inputText id="description" value="#{eventMB.description}">
+										<f:validateLength minimum="3" />
+										<p:ajax event="blur" update="descriptionMsg" />
+									</p:inputText>
+								</b:column>
+								<b:column span="6">
+									<p:message id="descriptionMsg" for="description" />
+								</b:column>
+							</b:row>
+						</div>
+						<div style="margin: 10px">
+							<b:row styleClass="show-grid">
+								<b:column span="1">
+									<div style="margin-top: 5px">
+										<h:outputLabel for="place" value="Place" />
+									</div>
+								</b:column>
+								<b:column span="5">
+									<p:inputText id="place" value="#{eventMB.place}">
+										<f:validateLength minimum="3" />
+										<p:ajax event="blur" update="placeMsg" />
+									</p:inputText>
+								</b:column>
+								<b:column span="6">
+									<p:message id="placeMsg" for="place" />
+								</b:column>
+							</b:row>
+						</div>
+						<div style="margin: 10px">
+							<b:row styleClass="show-grid">
+								<b:column span="1">
+									<div style="margin-top: 5px">
+										<h:outputLabel for="ticketCount" value="Ticket count" />
+									</div>
+								</b:column>
+								<b:column span="5">
+									<p:inputText id="ticketCount" value="#{eventMB.ticketCount}">
+									</p:inputText>
+								</b:column>
+								<b:column span="6">
+								</b:column>
+							</b:row>
+						</div>
+						<div style="margin: 10px">
+							<b:row styleClass="show-grid">
+								<b:column span="2">
+									<div style="text-align: center;">
+										<p:commandButton id="addUser" value="Add" style="width: 116%;"
+											action="#{userMB.addUser}" ajax="false" />
+									</div>
+								</b:column>
+								<b:column span="2">
+									<p:commandButton id="reset" value="Reset" style="width: 116%;"
+										action="#{userMB.reset}" ajax="false" />
+								</b:column>
+							</b:row>
+						</div>
+					</div>
+				</div>
+			</h:form>
+			<p:graphicImage value="#{ticketMB.code}" />
+		</ui:define>
+	</ui:composition>
+</h:body>
 
-</body>
 </html>

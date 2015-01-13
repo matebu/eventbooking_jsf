@@ -17,4 +17,18 @@
   		<managed-bean-class>com.ebooking.managed.bean.LoginManagedBean</managed-bean-class>
   		<managed-bean-scope>session</managed-bean-scope>
   	</managed-bean>
+  	
+    <navigation-rule>
+	<from-view-id>/pages/unsecure/login.xhtml</from-view-id>
+	<navigation-case>
+		<from-action>#{loginMB.login}</from-action>
+		<from-outcome>SUCCESS</from-outcome>
+		<to-view-id>/pages/unsecure/index.jsp</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-action>#{loginMB.login}</from-action>
+		<from-outcome>ERROR</from-outcome>
+		<to-view-id>/pages/unsecure/index.jsp</to-view-id>
+	</navigation-case>
+    </navigation-rule>
 </faces-config>

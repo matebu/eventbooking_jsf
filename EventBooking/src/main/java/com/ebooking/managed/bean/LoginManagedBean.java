@@ -24,7 +24,7 @@ public class LoginManagedBean implements Serializable {
     @ManagedProperty(value="#{authenticationManager}")
     private AuthenticationManager authenticationManager = null;
 
-    public String login() {
+    public String loginUser() {
         try {
             Authentication request = new UsernamePasswordAuthenticationToken(this.getLogin(), this.getPassword());
             Authentication result = authenticationManager.authenticate(request);
@@ -33,7 +33,7 @@ public class LoginManagedBean implements Serializable {
             e.printStackTrace();
             return "/pages/unsecure/index.jsf";
         }
-        return "/pages/secure/index.jsf";
+        return "/pages/unsecure/index.jsf";
     }
 
     public String cancel() {

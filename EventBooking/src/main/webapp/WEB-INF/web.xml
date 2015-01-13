@@ -35,7 +35,7 @@
 	</context-param>
 	
 	<welcome-file-list>
-		<welcome-file>/pages/secure/index.jsf</welcome-file>
+		<welcome-file>/pages/unsecure/index.jsf</welcome-file>
 	</welcome-file-list>
 	
 	<servlet>
