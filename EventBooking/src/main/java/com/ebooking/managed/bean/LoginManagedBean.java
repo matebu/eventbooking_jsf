@@ -29,11 +29,11 @@ public class LoginManagedBean implements Serializable {
             Authentication request = new UsernamePasswordAuthenticationToken(this.getLogin(), this.getPassword());
             Authentication result = authenticationManager.authenticate(request);
             SecurityContextHolder.getContext().setAuthentication(result);
+            return "/pages/secure/tickets.jsf";
         } catch (AuthenticationException e) {
             e.printStackTrace();
             return "/pages/unsecure/index.jsf";
         }
-        return "/pages/unsecure/index.jsf";
     }
 
     public String cancel() {

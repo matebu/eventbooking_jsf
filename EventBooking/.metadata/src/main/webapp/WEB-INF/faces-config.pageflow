@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12839225897960" configfile="/EventBooking/src/main/webapp/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="122" y="1073" id="pf128417779137424" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" path="register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="122" y="178" id="pf128417779137424" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" path="register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/unsecure/index" x="338" y="562" id="pf14212285643233" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" inlinks="pf14212285643234 pf14212285643235" path="/pages/unsecure/index.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/unsecure/r.xhtml" id="pf14212285643236" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14212285643234 pf14212285643235" path="/pages/unsecure/register.xhtml"/>
+  <links id="pf14212285643234" target="pf14212285643233" source="pf14212285643236" outcome="success" fromaction="#{userMB.addUser}"/>
+  <links id="pf14212285643235" target="pf14212285643233" source="pf14212285643236" outcome="error" fromaction="#{userMB.addUser}"/>
 </pageflow:Pageflow>

@@ -19,15 +19,15 @@
   	</managed-bean>
   	
     <navigation-rule>
-	<from-view-id>/pages/unsecure/login.xhtml</from-view-id>
+	<from-view-id>/pages/unsecure/register.xhtml</from-view-id>
 	<navigation-case>
-		<from-action>#{loginMB.login}</from-action>
-		<from-outcome>SUCCESS</from-outcome>
+		<from-action>#{userMB.addUser}</from-action>
+		<from-outcome>success</from-outcome>
 		<to-view-id>/pages/unsecure/index.jsp</to-view-id>
 	</navigation-case>
 	<navigation-case>
-		<from-action>#{loginMB.login}</from-action>
-		<from-outcome>ERROR</from-outcome>
+		<from-action>#{userMB.addUser}</from-action>
+		<from-outcome>error</from-outcome>
 		<to-view-id>/pages/unsecure/index.jsp</to-view-id>
 	</navigation-case>
     </navigation-rule>

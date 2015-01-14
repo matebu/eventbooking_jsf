@@ -5,57 +5,31 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
 	xmlns:sec="http://www.springframework.org/security/tags">
 <h:body>
 	<ui:composition template="/pages/template/commonLayout.xhtml">
 		<ui:define name="content">
-			<h:form>
-				<table>
-					<tr>
-						<td><h:outputLabel for="login" value="Login : " /></td>
-						<td><p:inputText id="login" value="#{userMB.login}">
-								<f:validateLength minimum="5" />
-								<p:ajax event="blur" update="loginMsg" />
-							</p:inputText> <p:message id="loginMsg" for="login" display="icon" /></td>
-					</tr>
-					<tr>
-						<td><h:outputLabel for="password" value="Password : " /></td>
-						<td><p:password id="password" value="#{userMB.password}">
-								<f:validateLength minimum="5" />
-								<p:ajax event="blur" update="passwordMsg" />
-							</p:password> <p:message id="passwordMsg" for="password" display="icon" /></td>
-					</tr>
-					<tr>
-						<td><h:outputLabel for="email" value="Email : " /></td>
-						<td><p:inputText id="email" value="#{userMB.email}">
-								<f:validateLength minimum="5" />
-								<p:ajax event="blur" update="emailMsg" />
-							</p:inputText> <p:message id="emailMsg" for="email" display="icon" /></td>
-					</tr>
-					<tr>
-						<td><h:outputLabel for="name" value="Name : " /></td>
-						<td><p:inputText id="name" value="#{userMB.name}">
-								<f:validateLength minimum="5" />
-								<p:ajax event="blur" update="nameMsg" />
-							</p:inputText> <p:message id="nameMsg" for="name" display="icon" /></td>
-					</tr>
-					<tr>
-						<td><h:outputLabel for="surname" value="Surname : " /></td>
-						<td><p:inputText id="surname" value="#{userMB.surname}">
-								<f:validateLength minimum="5" />
-								<p:ajax event="blur" update="surnameMsg" />
-							</p:inputText> <p:message id="surnameMsg" for="surname" display="icon" /></td>
-					</tr>
-					<tr>
-						<td><p:commandButton id="addUser" value="Add"
-								action="#{userMB.addUser}" ajax="false" /></td>
-						<td><p:commandButton id="reset" value="Reset"
-								action="#{userMB.reset}" ajax="false" /></td>
-					</tr>
-				</table>
-			</h:form>
-			<p:graphicImage value="#{ticketMB.code}" />
+			<b:jumbotron>
+				<div style="margin: 25px;">
+					<h1>Welcome to EventBooking!!</h1>
+					<p>
+						<br /> This is the place, where you can book tickets for events
+						from all around the world!<br />It has never been simpler, check
+						it out for yourself now!
+					</p>
+					<p>
+						Sports event, game convention, science conference, or maybe a
+						concert of your favourite band?<br />We have it all, join now to
+						experience the abondance of our offers!
+					</p>
+					<p>
+						<br /> <a class="btn btn-primary btn-lg"
+							href="/EventBooking/pages/unsecure/tickets.jsf" style="margin-left: 40px;">Check out the offers
+							now!</a>
+					</p>
+				</div>
+			</b:jumbotron>
 		</ui:define>
 	</ui:composition>
 </h:body>

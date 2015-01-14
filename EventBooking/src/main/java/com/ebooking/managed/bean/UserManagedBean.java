@@ -14,29 +14,48 @@ import com.ebooking.model.User;
 import com.ebooking.model.UserRole;
 import com.ebooking.service.IUserService;
 
-@ManagedBean(name="userMB")
+@ManagedBean(name = "userMB")
 @RequestScoped
 public class UserManagedBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private static final String SUCCESS = "success";
-	private static final String ERROR   = "error";
-	
-	//Spring User Service is injected...
-	@ManagedProperty(value="#{UserService}")
+	private static final String ERROR = "error";
+
+	// Spring User Service is injected...
+	@ManagedProperty(value = "#{UserService}")
 	IUserService userService;
-	
+
 	List<User> userList;
-	
+
 	private int id;
 	private String name;
 	private String surname;
 	private String login;
 	private String password;
 	private String email;
-	
+
 	private UserRole userRole;
-	
+
+	private boolean editable;
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditableFalse(User user) {
+		this.editable = false;
+		getUserService().updateUser(user);
+	}
+
+	public void setEditable(boolean e) {
+		this.editable = e;
+	}
+
+	public void changeEditable(User user) {
+		editable = !editable;
+	}
+
 	/**
 	 * Add User
 	 * 
@@ -57,11 +76,21 @@ public class UserManagedBean implements Serializable {
 			return SUCCESS;
 		} catch (DataAccessException e) {
 			e.printStackTrace();
-		} 	
-		
-		return ERROR;
+			return ERROR;
+		}
 	}
-	
+
+	@SuppressWarnings("finally")
+	public String deleteUser(User user) {
+		try {
+			getUserService().deleteUser(user);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		} finally {
+			return "/pages/secure/users.jsf";
+		}
+	}
+
 	/**
 	 * Reset Fields
 	 * 
@@ -75,7 +104,7 @@ public class UserManagedBean implements Serializable {
 		this.setPassword("");
 		this.setUserRole(null);
 	}
-	
+
 	/**
 	 * Get User List
 	 * 
@@ -86,7 +115,7 @@ public class UserManagedBean implements Serializable {
 		userList.addAll(getUserService().getUsers());
 		return userList;
 	}
-	
+
 	/**
 	 * Get User Service
 	 * 
@@ -99,21 +128,23 @@ public class UserManagedBean implements Serializable {
 	/**
 	 * Set User Service
 	 * 
-	 * @param IUserService - User Service
+	 * @param IUserService
+	 *            - User Service
 	 */
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
-	
+
 	/**
 	 * Set User List
 	 * 
-	 * @param List - User List
+	 * @param List
+	 *            - User List
 	 */
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
 	}
-	
+
 	/**
 	 * Get User Id
 	 * 
@@ -140,16 +171,17 @@ public class UserManagedBean implements Serializable {
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * Set User Name
 	 * 
-	 * @param String - User Name
+	 * @param String
+	 *            - User Name
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * Get User Surname
 	 * 
@@ -158,11 +190,12 @@ public class UserManagedBean implements Serializable {
 	public String getSurname() {
 		return surname;
 	}
-	
+
 	/**
 	 * Set User Surname
 	 * 
-	 * @param String - User Surname
+	 * @param String
+	 *            - User Surname
 	 */
 	public void setSurname(String surname) {
 		this.surname = surname;
@@ -199,5 +232,5 @@ public class UserManagedBean implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 }
