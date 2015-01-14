@@ -40,7 +40,7 @@ public class UserService implements IUserService {
 	 * 
 	 * @param  User user
 	 */
-	@Transactional(readOnly = false)
+	@Transactional
 	public void updateUser(User user) {
 		getUserDAO().updateUser(user);
 	}

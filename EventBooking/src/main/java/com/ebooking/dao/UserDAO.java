@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ebooking.model.User;
 import com.ebooking.model.UserRole;
 
+@Transactional
 public class UserDAO implements IUserDAO {
 
 	private SessionFactory sessionFactory;
@@ -62,7 +63,10 @@ public class UserDAO implements IUserDAO {
 	 */
 	@Transactional
 	public void updateUser(User user) {
-		getSessionFactory().getCurrentSession().update(user);
+		User requestedUser = getUser(user.getId());
+		requestedUser = user;
+		getSessionFactory().getCurrentSession().merge(requestedUser);
+		//getSessionFactory().getCurrentSession().update(requestedUser);
 	}
 
 	/**

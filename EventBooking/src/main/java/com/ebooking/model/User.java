@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "USERS")
@@ -23,9 +22,6 @@ public class User {
 	private String login;
 	private String password;
 	private String email;
-	
-	@Transient
-	private boolean editable;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private UserRole userRole;
@@ -135,16 +131,6 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	
-	@Transient
-	public boolean isEditable() {
-		return editable;
-	}
-	
-	@Transient
-	public void setEditable(boolean editable) {
-		this.editable = editable;
 	}
 
 	@Override

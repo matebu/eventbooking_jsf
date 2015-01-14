@@ -79,6 +79,15 @@ public class UserManagedBean implements Serializable {
 			return ERROR;
 		}
 	}
+	
+	public void updateUser() {
+		User u = getUserService().getUserById(getId());
+		u.setName(getName());
+		u.setSurname(getSurname());
+		u.setEmail(getEmail());
+		u.setLogin(getLogin());
+		getUserService().updateUser(u);
+	}
 
 	@SuppressWarnings("finally")
 	public String deleteUser(User user) {
@@ -233,4 +242,13 @@ public class UserManagedBean implements Serializable {
 		this.email = email;
 	}
 
+	private String searchLogin;
+
+	public String getSearchLogin() {
+		return searchLogin;
+	}
+
+	public void setSearchLogin(String searchLogin) {
+		this.searchLogin = searchLogin;
+	}
 }
