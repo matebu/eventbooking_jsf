@@ -23,7 +23,7 @@ public class User {
 	private String password;
 	private String email;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private UserRole userRole;
 
 	public User() {
@@ -140,5 +140,20 @@ public class User {
 		strBuff.append(", name : ").append(getName());
 		strBuff.append(", surname : ").append(getSurname());
 		return strBuff.toString();
+	}
+
+	public void assignData(User u) {
+		this.login = u.getPassword();
+		this.email = u.getPassword();
+		this.name = u.getName();
+		this.surname = u.getSurname();
+	}
+
+	public boolean compare(User u) {
+		return (this.id == u.getId() && this.login.compareTo(u.getLogin()) == 0
+				&& this.password.compareTo(u.getPassword()) == 0
+				&& this.email.compareTo(u.getEmail()) == 0
+				&& this.name.compareTo(u.getName()) == 0 && this.surname
+					.compareTo(u.getSurname()) == 0);
 	}
 }

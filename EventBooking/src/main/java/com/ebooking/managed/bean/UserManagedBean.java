@@ -4,29 +4,32 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
+import org.hibernate.Hibernate;
 import org.springframework.dao.DataAccessException;
 
 import com.ebooking.model.User;
 import com.ebooking.model.UserRole;
 import com.ebooking.service.IUserService;
 
+@SuppressWarnings("restriction")
 @ManagedBean(name = "userMB")
-@RequestScoped
+@ViewScoped
 public class UserManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private static final String SUCCESS = "success";
 	private static final String ERROR = "error";
 
-	// Spring User Service is injected...
 	@ManagedProperty(value = "#{UserService}")
 	IUserService userService;
 
 	List<User> userList;
+	List<User> userEditList;
 
 	private int id;
 	private String name;
@@ -38,6 +41,10 @@ public class UserManagedBean implements Serializable {
 	private UserRole userRole;
 
 	private boolean editable;
+
+	/**
+	 * Editing data
+	 */
 
 	public boolean isEditable() {
 		return editable;
@@ -54,6 +61,25 @@ public class UserManagedBean implements Serializable {
 
 	public void changeEditable(User user) {
 		editable = !editable;
+	}
+
+	/**
+	 * Init
+	 */
+
+	@PostConstruct
+	public void init() {
+		userEditList = new ArrayList<User>(getUserService().getUsers());
+	}
+
+	public void updateChanged() {
+		for (User user : userEditList) {
+			User u = getUserService().getUserById(user.getId());
+			Hibernate.initialize(u.getUserRole());
+			if (u.getUserRole().getRole().compareTo("ROLE_ADMIN") != 0)
+				u.assignData(user);
+			getUserService().updateUser(u);
+		}
 	}
 
 	/**
@@ -79,7 +105,26 @@ public class UserManagedBean implements Serializable {
 			return ERROR;
 		}
 	}
-	
+
+	public String addDefaultAdmin() {
+		try {
+			User user = new User();
+			user.setId(0);
+			user.setName("Mateusz");
+			user.setSurname("Busiakiewicz");
+			user.setEmail("admin@test_mail.com");
+			user.setLogin("admin");
+			user.setPassword(getUserService().hashPassword("admin"));
+			UserRole ur = getUserService().findRoleByName("ROLE_ADMIN");
+			user.setUserRole(ur);
+			getUserService().addUser(user);
+			return SUCCESS;
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+	}
+
 	public void updateUser() {
 		User u = getUserService().getUserById(getId());
 		u.setName(getName());
@@ -240,6 +285,14 @@ public class UserManagedBean implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<User> getUserEditList() {
+		return userEditList;
+	}
+
+	public void setUserEditList(List<User> userEditList) {
+		this.userEditList = userEditList;
 	}
 
 	private String searchLogin;

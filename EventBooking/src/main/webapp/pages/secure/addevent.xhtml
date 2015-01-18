@@ -16,13 +16,13 @@
 			<h:form>
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h4 class="panel-title">User registration form</h4>
+						<h4 class="panel-title">Adding new event</h4>
 					</div>
 					<div class="panel-body">
 						<div style="margin: 10px">
 							<b:row styleClass="show-grid">
-								<b:column span="1">
-									<div style="margin-top: 5px">
+								<b:column span="2">
+									<div style="margin-top: 5px; text-align: center">
 										<h:outputLabel for="name" value="Name" />
 									</div>
 								</b:column>
@@ -32,15 +32,15 @@
 										<p:ajax event="blur" update="nameMsg" />
 									</p:inputText>
 								</b:column>
-								<b:column span="6">
+								<b:column span="5">
 									<p:message id="nameMsg" for="name" />
 								</b:column>
 							</b:row>
 						</div>
-						<div style="margin: 10px">
+						<div style="margin: 10px;">
 							<b:row styleClass="show-grid">
-								<b:column span="1">
-									<div style="margin-top: 5px">
+								<b:column span="2">
+									<div style="margin-top: 5px; text-align: center">
 										<h:outputLabel for="description" value="Description" />
 									</div>
 								</b:column>
@@ -50,15 +50,15 @@
 										<p:ajax event="blur" update="descriptionMsg" />
 									</p:inputText>
 								</b:column>
-								<b:column span="6">
+								<b:column span="5">
 									<p:message id="descriptionMsg" for="description" />
 								</b:column>
 							</b:row>
 						</div>
 						<div style="margin: 10px">
 							<b:row styleClass="show-grid">
-								<b:column span="1">
-									<div style="margin-top: 5px">
+								<b:column span="2">
+									<div style="margin-top: 5px; text-align: center">
 										<h:outputLabel for="place" value="Place" />
 									</div>
 								</b:column>
@@ -68,23 +68,23 @@
 										<p:ajax event="blur" update="placeMsg" />
 									</p:inputText>
 								</b:column>
-								<b:column span="6">
+								<b:column span="5">
 									<p:message id="placeMsg" for="place" />
 								</b:column>
 							</b:row>
 						</div>
 						<div style="margin: 10px">
 							<b:row styleClass="show-grid">
-								<b:column span="1">
-									<div style="margin-top: 5px">
+								<b:column span="2">
+									<div style="margin-top: 5px; text-align: center">
 										<h:outputLabel for="ticketCount" value="Ticket count" />
 									</div>
 								</b:column>
 								<b:column span="5">
-									<p:inputText id="ticketCount" value="#{eventMB.ticketCount}">
-									</p:inputText>
+									<p:spinner id="ticketCount" value="#{eventMB.ticketCount}"
+										min="0" />
 								</b:column>
-								<b:column span="6">
+								<b:column span="5">
 								</b:column>
 							</b:row>
 						</div>
@@ -92,13 +92,14 @@
 							<b:row styleClass="show-grid">
 								<b:column span="2">
 									<div style="text-align: center;">
-										<p:commandButton id="addUser" value="Add" style="width: 116%;"
-											action="#{userMB.addUser}" ajax="false" />
+										<p:commandButton id="addEvent" value="Add"
+											style="width: 116%;" action="#{eventMB.addEvent}"
+											ajax="false" />
 									</div>
 								</b:column>
 								<b:column span="2">
 									<p:commandButton id="reset" value="Reset" style="width: 116%;"
-										action="#{userMB.reset}" ajax="false" />
+										action="#{eventMB.reset}" ajax="false" />
 								</b:column>
 							</b:row>
 						</div>

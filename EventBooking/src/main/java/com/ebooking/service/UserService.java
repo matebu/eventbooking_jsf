@@ -2,6 +2,8 @@ package com.ebooking.service;
 
 import java.util.List;
 
+import javax.faces.bean.ApplicationScoped;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,15 +12,17 @@ import com.ebooking.model.UserRole;
 import com.ebooking.dao.IUserDAO;
 
 @Transactional
+@ApplicationScoped
 public class UserService implements IUserService {
 
 	// UserDAO is injected...
 	IUserDAO userDAO;
-	
+
 	/**
 	 * Add User
 	 * 
-	 * @param  User user
+	 * @param User
+	 *            user
 	 */
 	@Transactional
 	public void addUser(User user) {
@@ -28,27 +32,29 @@ public class UserService implements IUserService {
 	/**
 	 * Delete User
 	 * 
-	 * @param  User user
+	 * @param User
+	 *            user
 	 */
 	@Transactional
 	public void deleteUser(User user) {
 		getUserDAO().deleteUser(user);
 	}
-	
+
 	/**
 	 * Update User
 	 * 
-	 * @param  User user
+	 * @param User
+	 *            user
 	 */
 	@Transactional
 	public void updateUser(User user) {
 		getUserDAO().updateUser(user);
 	}
-	
+
 	/**
 	 * Get User
 	 * 
-	 * @param  int User Id
+	 * @param int User Id
 	 */
 	public User getUserById(int id) {
 		return getUserDAO().getUser(id);
@@ -58,7 +64,7 @@ public class UserService implements IUserService {
 	 * Get User List
 	 * 
 	 */
-	public List<User> getUsers() {	
+	public List<User> getUsers() {
 		return getUserDAO().getUsers();
 	}
 
@@ -74,7 +80,8 @@ public class UserService implements IUserService {
 	/**
 	 * Set User DAO
 	 * 
-	 * @param IUserDAO - User DAO
+	 * @param IUserDAO
+	 *            - User DAO
 	 */
 	public void setUserDAO(IUserDAO userDAO) {
 		this.userDAO = userDAO;
@@ -92,8 +99,7 @@ public class UserService implements IUserService {
 		return getUserDAO().findRoleByName(role);
 	}
 
-	public String hashPassword(String password)
-	{
+	public String hashPassword(String password) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		return passwordEncoder.encode(password);
 	}

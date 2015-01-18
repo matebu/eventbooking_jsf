@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.springframework.dao.DataAccessException;
 
@@ -15,9 +15,9 @@ import com.ebooking.model.Event;
 import com.ebooking.service.IEventService;
 
 @ManagedBean(name = "eventMB")
-@RequestScoped
+@ViewScoped
 public class EventManagedBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private static final String SUCCESS = "success";
 	private static final String ERROR = "error";
@@ -62,6 +62,18 @@ public class EventManagedBean implements Serializable {
 		this.setPrice(0.0);
 		Date dateNow = new Date(new java.util.Date().getTime());
 		this.setDate(dateNow);
+	}
+
+	public List<Event> getEventList() {
+		return eventList;
+	}
+
+	public void setEventList(List<Event> eventList) {
+		this.eventList = eventList;
+	}
+
+	public void setEventService(IEventService eventService) {
+		this.eventService = eventService;
 	}
 
 	public IEventService getEventService() {

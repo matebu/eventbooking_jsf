@@ -25,7 +25,7 @@ public class LoginManagedBean implements Serializable {
     private AuthenticationManager authenticationManager = null;
 
     public String loginUser() {
-        try {
+        try {			
             Authentication request = new UsernamePasswordAuthenticationToken(this.getLogin(), this.getPassword());
             Authentication result = authenticationManager.authenticate(request);
             SecurityContextHolder.getContext().setAuthentication(result);

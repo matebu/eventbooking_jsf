@@ -19,6 +19,8 @@ public class Event {
 	private String name;
 	private String description;
 	private String place;
+	private double latitude;
+	private double longitude;
 	private Date date;
 	private int ticketCount;
 	private double price;
@@ -94,5 +96,23 @@ public class Event {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	@Column(name = "latitude", unique = false, nullable = true)
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	@Column(name = "longitude", unique = false, nullable = true)
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 }
