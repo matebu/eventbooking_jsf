@@ -1,5 +1,6 @@
 package com.ebooking.service;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -9,8 +10,9 @@ import com.ebooking.dao.IEventDAO;
 import com.ebooking.model.Event;
 
 @Transactional
-public class EventService implements IEventService {
+public class EventService implements IEventService, Serializable {
 
+	private static final long serialVersionUID = 1L;
 	IEventDAO eventDAO;
 
 	@Transactional
