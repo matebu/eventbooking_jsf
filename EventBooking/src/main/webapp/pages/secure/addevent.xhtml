@@ -9,6 +9,8 @@
 	xmlns:sec="http://www.springframework.org/security/tags">
 <h:head>
 	<h:outputStylesheet name="common-style.css" library="css" />
+	<script src="http://maps.google.com/maps/api/js?sensor=false"
+		type="text/javascript"></script>
 </h:head>
 <h:body>
 	<ui:composition template="/pages/template/commonLayout.xhtml">
@@ -21,85 +23,92 @@
 					<div class="panel-body">
 						<div style="margin: 10px">
 							<b:row styleClass="show-grid">
-								<b:column span="2">
-									<div style="margin-top: 5px; text-align: center">
-										<h:outputLabel for="name" value="Name" />
-									</div>
+								<b:column span="6">
+									<b:row styleClass="show-grid">
+										<b:column span="3">
+											<div style="margin-top: 5px; text-align: center">
+												<h:outputLabel for="name" value="Name" />
+											</div>
+										</b:column>
+										<b:column span="5">
+											<p:inputText id="name" value="#{eventMB.name}">
+												<f:validateLength minimum="3" />
+												<p:ajax event="blur" update="nameMsg" />
+											</p:inputText>
+											<p:message id="nameMsg" for="name" />
+										</b:column>
+									</b:row>
+									<b:row styleClass="show-grid">
+										<b:column span="3">
+											<div style="margin-top: 5px; text-align: center">
+												<h:outputLabel for="description" value="Description" />
+											</div>
+										</b:column>
+										<b:column span="5">
+											<p:inputText id="description" value="#{eventMB.description}">
+												<f:validateLength minimum="3" />
+												<p:ajax event="blur" update="descriptionMsg" />
+											</p:inputText>
+											<p:message id="descriptionMsg" for="description" />
+										</b:column>
+									</b:row>
+									<b:row styleClass="show-grid">
+										<b:column span="3">
+											<div style="margin-top: 5px; text-align: center">
+												<h:outputLabel for="place" value="Place" />
+											</div>
+										</b:column>
+										<b:column span="5">
+											<p:inputText id="place" value="#{eventMB.place}">
+												<f:validateLength minimum="3" />
+												<p:ajax event="blur" update="placeMsg" />
+											</p:inputText>
+											<p:message id="placeMsg" for="place" />
+										</b:column>
+									</b:row>
+									<b:row styleClass="show-grid">
+										<b:column span="3">
+											<div style="margin-top: 5px; text-align: center">
+												<h:outputLabel for="ticketCount" value="Ticket count" />
+											</div>
+										</b:column>
+										<b:column span="5">
+											<p:spinner id="ticketCount" value="#{eventMB.ticketCount}"
+												min="0" />
+										</b:column>
+									</b:row>
+									<b:row styleClass="show-grid">
+										<b:column span="4">
+											<div style="text-align: center;">
+												<p:commandButton id="addEvent" value="Add"
+													style="width: 116%;" action="#{eventMB.addEvent}"
+													ajax="false" />
+											</div>
+										</b:column>
+										<b:column span="4">
+											<p:commandButton id="reset" value="Reset"
+												style="width: 116%;" action="#{eventMB.reset}" ajax="false" />
+										</b:column>
+									</b:row>
 								</b:column>
-								<b:column span="5">
-									<p:inputText id="name" value="#{eventMB.name}">
-										<f:validateLength minimum="3" />
-										<p:ajax event="blur" update="nameMsg" />
-									</p:inputText>
-								</b:column>
-								<b:column span="5">
-									<p:message id="nameMsg" for="name" />
-								</b:column>
-							</b:row>
-						</div>
-						<div style="margin: 10px;">
-							<b:row styleClass="show-grid">
-								<b:column span="2">
-									<div style="margin-top: 5px; text-align: center">
-										<h:outputLabel for="description" value="Description" />
-									</div>
-								</b:column>
-								<b:column span="5">
-									<p:inputText id="description" value="#{eventMB.description}">
-										<f:validateLength minimum="3" />
-										<p:ajax event="blur" update="descriptionMsg" />
-									</p:inputText>
-								</b:column>
-								<b:column span="5">
-									<p:message id="descriptionMsg" for="description" />
-								</b:column>
-							</b:row>
-						</div>
-						<div style="margin: 10px">
-							<b:row styleClass="show-grid">
-								<b:column span="2">
-									<div style="margin-top: 5px; text-align: center">
-										<h:outputLabel for="place" value="Place" />
-									</div>
-								</b:column>
-								<b:column span="5">
-									<p:inputText id="place" value="#{eventMB.place}">
-										<f:validateLength minimum="3" />
-										<p:ajax event="blur" update="placeMsg" />
-									</p:inputText>
-								</b:column>
-								<b:column span="5">
-									<p:message id="placeMsg" for="place" />
-								</b:column>
-							</b:row>
-						</div>
-						<div style="margin: 10px">
-							<b:row styleClass="show-grid">
-								<b:column span="2">
-									<div style="margin-top: 5px; text-align: center">
-										<h:outputLabel for="ticketCount" value="Ticket count" />
-									</div>
-								</b:column>
-								<b:column span="5">
-									<p:spinner id="ticketCount" value="#{eventMB.ticketCount}"
-										min="0" />
-								</b:column>
-								<b:column span="5">
-								</b:column>
-							</b:row>
-						</div>
-						<div style="margin: 10px">
-							<b:row styleClass="show-grid">
-								<b:column span="2">
-									<div style="text-align: center;">
-										<p:commandButton id="addEvent" value="Add"
-											style="width: 116%;" action="#{eventMB.addEvent}"
-											ajax="false" />
-									</div>
-								</b:column>
-								<b:column span="2">
-									<p:commandButton id="reset" value="Reset" style="width: 116%;"
-										action="#{eventMB.reset}" ajax="false" />
+								<b:column span="6">
+									<p:gmap center="51.753666, 19.454205" zoom="17" type="hybrid"
+										style="width:200;height:400px"
+										model="#{eventMB.emptyModel}"
+										onPointClick="handlePointClick(event);" widgetVar="map" />
+
+									<p:dialog widgetVar="dlg" showEffect="fade">
+										<h:form prependId="false">
+											<h:panelGrid columns="2">
+												<p:commandButton value="Add"
+													actionListener="#{eventMB.addMarker}" oncomplete="markerAddComplete()" />
+												<p:commandButton value="Cancel" onclick="return cancel()" />
+											</h:panelGrid>
+
+											<h:inputHidden id="lat" value="#{eventMB.lat}" />
+											<h:inputHidden id="lng" value="#{eventMB.lng}" />
+										</h:form>
+									</p:dialog>
 								</b:column>
 							</b:row>
 						</div>

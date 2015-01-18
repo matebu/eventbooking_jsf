@@ -5,15 +5,21 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 import org.springframework.dao.DataAccessException;
 
 import com.ebooking.model.Event;
 import com.ebooking.service.IEventService;
 
+@SuppressWarnings("restriction")
 @ManagedBean(name = "eventMB")
 @ViewScoped
 public class EventManagedBean implements Serializable {
@@ -27,6 +33,8 @@ public class EventManagedBean implements Serializable {
 
 	List<Event> eventList;
 
+	private MapModel emptyModel;
+
 	private int id;
 	private String name;
 	private String description;
@@ -34,6 +42,8 @@ public class EventManagedBean implements Serializable {
 	private Date date;
 	private int ticketCount;
 	private double price;
+	private double lat;
+	private double lng;
 
 	public String addEvent() {
 		try {
@@ -62,6 +72,40 @@ public class EventManagedBean implements Serializable {
 		this.setPrice(0.0);
 		Date dateNow = new Date(new java.util.Date().getTime());
 		this.setDate(dateNow);
+	}
+
+	@PostConstruct
+	public void init() {
+		emptyModel = new DefaultMapModel();
+	}
+
+	public void addMarker() {
+		Marker marker = new Marker(new LatLng(lat, lng), place);
+		emptyModel.addOverlay(marker);
+	}
+
+	public double getLat() {
+		return lat;
+	}
+
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
+	public double getLng() {
+		return lng;
+	}
+
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+
+	public MapModel getEmptyModel() {
+		return emptyModel;
+	}
+
+	public void setEmptyModel(MapModel emptyModel) {
+		this.emptyModel = emptyModel;
 	}
 
 	public List<Event> getEventList() {
