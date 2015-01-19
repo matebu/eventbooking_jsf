@@ -54,6 +54,8 @@ public class EventManagedBean implements Serializable {
 			event.setDescription(getDescription());
 			event.setTicketCount(getTicketCount());
 			event.setPrice(getPrice());
+			event.setLatitude(getLat());
+			event.setLongitude(getLng());
 			getEventService().addEvent(event);
 			return SUCCESS;
 		} catch (DataAccessException e) {
