@@ -38,12 +38,13 @@
 						</b:dropMenu>
 					</ui:fragment>
 					<b:navLink value="Events" href="/pages/unsecure/events.jsf"></b:navLink>
-					<b:navLink value="Tickets" href="/pages/unsecure/tickets.jsf"></b:navLink>
+					<!-- <b:navLink value="Tickets" href="/pages/unsecure/tickets.jsf"></b:navLink> -->
 					<sec:authorize access="hasRole('ROLE_ADMIN')">
 						<b:dropMenu value="Administration">
 							<b:navLink header="Events"></b:navLink>
 							<b:navLink value="Add event" href="/pages/secure/addevent.jsf"></b:navLink>
-							<b:navLink value="Event list management" href="#"></b:navLink>
+							<b:navLink value="Event list management"
+								href="/pages/secure/eventsedit.jsf"></b:navLink>
 							<b:navLink></b:navLink>
 							<b:navLink header="Other"></b:navLink>
 							<b:navLink value="Tickets management" href="#"></b:navLink>

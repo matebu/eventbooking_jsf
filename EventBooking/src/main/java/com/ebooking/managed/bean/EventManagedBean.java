@@ -32,6 +32,7 @@ public class EventManagedBean implements Serializable {
 	IEventService eventService;
 
 	List<Event> eventList;
+	List<Event> eventEditList;
 
 	private MapModel emptyModel;
 
@@ -48,6 +49,7 @@ public class EventManagedBean implements Serializable {
 	public String addEvent() {
 		try {
 			Event event = new Event();
+
 			event.setId(getId());
 			event.setName(getName());
 			event.setDate(new Date(getSelectedDate().getTime()));
@@ -57,6 +59,7 @@ public class EventManagedBean implements Serializable {
 			event.setPlace(getPlace());
 			event.setLatitude(getLat());
 			event.setLongitude(getLng());
+
 			getEventService().addEvent(event);
 			return SUCCESS;
 		} catch (DataAccessException e) {
@@ -64,6 +67,17 @@ public class EventManagedBean implements Serializable {
 		}
 
 		return ERROR;
+	}
+
+	@SuppressWarnings("finally")
+	public String deleteEvent(Event event) {
+		try {
+			getEventService().deleteEvent(event);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		} finally {
+			return "/pages/secure/eventsedit.jsf";
+		}
 	}
 
 	public void reset() {
@@ -75,16 +89,43 @@ public class EventManagedBean implements Serializable {
 		this.setPrice(0.0);
 		Date dateNow = new Date(new java.util.Date().getTime());
 		this.setDate(dateNow);
+		this.setSelectedDate(dateNow);
 	}
 
 	@PostConstruct
 	public void init() {
 		emptyModel = new DefaultMapModel();
+		eventEditList = new ArrayList<Event>(getEventService().getEvents());
+	}
+
+	public void updateChanged() {
+		for (Event event : eventEditList) {
+			Event evn = getEventService().getEventById(event.getId());
+
+			evn.setDate(event.getDate());
+			evn.setDescription(event.getDescription());
+			evn.setLatitude(event.getLatitude());
+			evn.setLongitude(event.getLongitude());
+			evn.setName(event.getName());
+			evn.setPlace(event.getPlace());
+			evn.setPrice(event.getPrice());
+			evn.setTicketCount(event.getTicketCount());
+
+			getEventService().updateEvent(evn);
+		}
 	}
 
 	public void addMarker() {
 		Marker marker = new Marker(new LatLng(lat, lng), place);
 		emptyModel.addOverlay(marker);
+	}
+
+	public List<Event> getEventEditList() {
+		return eventEditList;
+	}
+
+	public void setEventEditList(List<Event> eventEditList) {
+		this.eventEditList = eventEditList;
 	}
 
 	public double getLat() {
@@ -192,7 +233,6 @@ public class EventManagedBean implements Serializable {
 	// Calendar
 	private boolean popup = true;
 	private String pattern = "dd/MM/yyyy";
-	private java.util.Date currentDate;
 	private java.util.Date selectedDate;
 
 	public boolean isPopup() {
@@ -209,14 +249,6 @@ public class EventManagedBean implements Serializable {
 
 	public void setPattern(String pattern) {
 		this.pattern = pattern;
-	}
-
-	public java.util.Date getCurrentDate() {
-		return currentDate;
-	}
-
-	public void setCurrentDate(java.util.Date currentDate) {
-		this.currentDate = currentDate;
 	}
 
 	public java.util.Date getSelectedDate() {
