@@ -187,4 +187,43 @@ public class EventManagedBean implements Serializable {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	//Calendar 
+	private boolean popup = true; 
+    private String pattern = "dd/MM/yyyy";
+    private Date currentDate;
+    private Date selectedDate;
+
+	public boolean isPopup() {
+		return popup;
+	}
+
+	public void setPopup(boolean popup) {
+		this.popup = popup;
+	}
+
+	public String getPattern() {
+		return pattern;
+	}
+
+	public void setPattern(String pattern) {
+		this.pattern = pattern;
+	}
+
+	public Date getCurrentDate() {
+		return currentDate;
+	}
+
+	public void setCurrentDate(Date currentDate) {
+		this.currentDate = currentDate;
+	}
+
+	public Date getSelectedDate() {
+		return selectedDate;
+	}
+
+	public void setSelectedDate(Date selectedDate) {
+		this.selectedDate = selectedDate;
+	}
+	
 }

@@ -70,14 +70,14 @@
 								<b:column span="6">
 									<div style="margin-top: 5px; text-align: center">
 										<b:row styleClass="show-grid">
-											<b:column span="3">
-												<div style="margin-top: 5px; text-align: center">
+											<b:column span="4">
+												<div style="margin-top: 5px; text-align: left">
 													<h:outputLabel for="name" value="Name" />
 												</div>
 											</b:column>
 											<b:column span="5">
 												<p:inputText id="name" value="#{eventMB.name}">
-													<f:validateLength minimum="3" />
+													<f:validateLength minimum="1" />
 													<p:ajax event="blur" update="nameMsg" />
 												</p:inputText>
 												<p:message id="nameMsg" for="name" />
@@ -86,14 +86,14 @@
 									</div>
 									<div style="margin-top: 5px; text-align: center">
 										<b:row styleClass="show-grid">
-											<b:column span="3">
-												<div style="margin-top: 5px; text-align: center">
+											<b:column span="4">
+												<div style="margin-top: 5px; text-align: left">
 													<h:outputLabel for="description" value="Description" />
 												</div>
 											</b:column>
 											<b:column span="5">
 												<p:inputText id="description" value="#{eventMB.description}">
-													<f:validateLength minimum="3" />
+													<f:validateLength minimum="1" />
 													<p:ajax event="blur" update="descriptionMsg" />
 												</p:inputText>
 												<p:message id="descriptionMsg" for="description" />
@@ -102,14 +102,14 @@
 									</div>
 									<div style="margin-top: 5px; text-align: center">
 										<b:row styleClass="show-grid">
-											<b:column span="3">
-												<div style="margin-top: 5px; text-align: center">
+											<b:column span="4">
+												<div style="margin-top: 5px; text-align: left">
 													<h:outputLabel for="place" value="Place" />
 												</div>
 											</b:column>
 											<b:column span="5">
 												<p:inputText id="place" value="#{eventMB.place}">
-													<f:validateLength minimum="3" />
+													<f:validateLength minimum="1" />
 													<p:ajax event="blur" update="placeMsg" />
 												</p:inputText>
 												<p:message id="placeMsg" for="place" />
@@ -118,8 +118,23 @@
 									</div>
 									<div style="margin-top: 5px; text-align: center">
 										<b:row styleClass="show-grid">
-											<b:column span="3">
-												<div style="margin-top: 5px; text-align: center">
+											<b:column span="4">
+												<div style="margin-top: 5px; text-align: left">
+													<h:outputLabel for="place" value="Date" />
+												</div>
+											</b:column>
+											<b:column span="6">
+												<rich:calendar value="#{calendarBean.selectedDate}"
+													popup="#{calendarBean.popup}"
+													datePattern="#{calendarBean.pattern}" cellWidth="24px"
+													cellHeight="22px" style="width:250px" />
+											</b:column>
+										</b:row>
+									</div>
+									<div style="margin-top: 5px; text-align: center">
+										<b:row styleClass="show-grid">
+											<b:column span="4">
+												<div style="margin-top: 5px; text-align: left">
 													<h:outputLabel for="ticketCount" value="Ticket count" />
 												</div>
 											</b:column>
