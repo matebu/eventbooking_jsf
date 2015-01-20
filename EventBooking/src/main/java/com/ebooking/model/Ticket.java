@@ -1,5 +1,7 @@
 package com.ebooking.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,6 +20,8 @@ public class Ticket {
 	private int id;
 	private String title;
 	private String qrdata;
+	private Date bookedDate;
+	private boolean paid = false;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Event event;
@@ -68,5 +72,23 @@ public class Ticket {
 
 	public void setQrdata(String qrdata) {
 		this.qrdata = qrdata;
+	}
+
+	@Column(name = "paid")
+	public boolean isPaid() {
+		return paid;
+	}
+
+	public void setPaid(boolean paid) {
+		this.paid = paid;
+	}
+
+	@Column(name = "bookeddate")
+	public Date getBookedDate() {
+		return bookedDate;
+	}
+
+	public void setBookedDate(Date bookedDate) {
+		this.bookedDate = bookedDate;
 	}
 }

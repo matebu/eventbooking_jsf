@@ -3,6 +3,7 @@ package com.ebooking.managed.bean;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,9 +62,17 @@ public class TicketManagedBean implements Serializable {
 			User ur = userService.getUserById(getUserId());
 			ticket.setUser(ur);
 
-			setQrdata("T" + getId() + "E" + getEventId() + "U" + getUserId());
+			setQrdata("Ticket" + getId() + "-Event" + getEventId() + "-User"
+					+ getUserId());
 
 			ticket.setQrdata(getQrdata());
+			ticket.setBookedDate(new Date(new java.util.Date().getTime()));
+
+			Event event = getEventService().getEventById(
+					ticket.getEvent().getId());
+			event.setTicketCount(event.getTicketCount() - 1);
+			getEventService().updateEvent(event);
+
 			getTicketService().addTicket(ticket);
 			return SUCCESS;
 		} catch (DataAccessException e) {
@@ -73,13 +82,42 @@ public class TicketManagedBean implements Serializable {
 		return ERROR;
 	}
 
+	@SuppressWarnings("finally")
+	public String deleteTicket(Ticket ticket) {
+		try {
+			getTicketService().deleteTicket(ticket);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		} finally {
+			return "/pages/secure/tickets.jsf";
+		}
+	}
+
 	public StreamedContent getCode() {
 		String data = getQrdata();
 		if (getQrdata() == null || getQrdata() == "")
 			data = "TXXEXXUXX";
 		ByteArrayOutputStream out = QRCode.from(data).to(ImageType.PNG)
 				.stream();
-		return new DefaultStreamedContent(new ByteArrayInputStream(out.toByteArray()));
+		return new DefaultStreamedContent(new ByteArrayInputStream(
+				out.toByteArray()));
+	}
+
+	public StreamedContent getCodeFromText(String data) {
+		if (data == null)
+			data = "";
+		ByteArrayOutputStream out = QRCode.from(data).to(ImageType.PNG)
+				.stream();
+		return new DefaultStreamedContent(new ByteArrayInputStream(
+				out.toByteArray()));
+	}
+
+	public StreamedContent getCodeFromTicket(Ticket dataTicket) {
+		String data = dataTicket.getQrdata();
+		ByteArrayOutputStream out = QRCode.from(data).to(ImageType.PNG)
+				.stream();
+		return new DefaultStreamedContent(new ByteArrayInputStream(
+				out.toByteArray()));
 	}
 
 	public void reset() {
@@ -114,10 +152,14 @@ public class TicketManagedBean implements Serializable {
 		this.userService = userService;
 	}
 
-	public List<Ticket> getUserList() {
+	public List<Ticket> getTicketList() {
 		ticketList = new ArrayList<Ticket>();
 		ticketList.addAll(getTicketService().getTickets());
 		return ticketList;
+	}
+
+	public void setTicketList(List<Ticket> ticketList) {
+		this.ticketList = ticketList;
 	}
 
 	public int getId() {
