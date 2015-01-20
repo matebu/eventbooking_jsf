@@ -28,7 +28,7 @@
 					if (currentMarker === null) {
 						document.getElementById('mainForm:lat').value = event.latLng
 								.lat();
-						document.getElementById('mainForm:lat').value = event.latLng
+						document.getElementById('mainForm:lng').value = event.latLng
 								.lng();
 						currentMarker = new google.maps.Marker({
 							position : new google.maps.LatLng(event.latLng
@@ -120,21 +120,6 @@
 										<b:row styleClass="show-grid">
 											<b:column span="4">
 												<div style="margin-top: 5px; text-align: left">
-													<h:outputLabel for="place" value="Date" />
-												</div>
-											</b:column>
-											<b:column span="6">
-												<rich:calendar value="#{calendarBean.selectedDate}"
-													popup="#{calendarBean.popup}"
-													datePattern="#{calendarBean.pattern}" cellWidth="24px"
-													cellHeight="22px" style="width:250px" />
-											</b:column>
-										</b:row>
-									</div>
-									<div style="margin-top: 5px; text-align: center">
-										<b:row styleClass="show-grid">
-											<b:column span="4">
-												<div style="margin-top: 5px; text-align: left">
 													<h:outputLabel for="ticketCount" value="Ticket count" />
 												</div>
 											</b:column>
@@ -147,22 +132,37 @@
 									<div style="margin-top: 5px; text-align: center">
 										<b:row styleClass="show-grid">
 											<b:column span="4">
+												<div style="margin-top: 5px; text-align: left">
+													<h:outputLabel for="place" value="Date" />
+												</div>
+											</b:column>
+											<b:column span="6">
+												<rich:calendar value="#{eventMB.selectedDate}"
+													popup="#{eventMB.popup}" datePattern="#{eventMB.pattern}"
+													cellWidth="25px" cellHeight="25px" style="width:250px" />
+											</b:column>
+										</b:row>
+									</div>
+									<div style="margin-top: 5px; text-align: center">
+										<b:row styleClass="show-grid">
+											<b:column span="4">
 												<div style="text-align: center;">
 													<p:commandButton id="addEvent" value="Add"
 														style="width: 116%;" action="#{eventMB.addEvent}"
 														ajax="false" />
 												</div>
-											</b:column>
-											<b:column span="4">
-												<p:commandButton id="reset" value="Reset"
-													style="width: 116%;" action="#{eventMB.reset}" ajax="false" />
+												<div style="margin-top: 5px; text-align: center">
+													<p:commandButton id="reset" value="Reset"
+														style="width: 116%;" action="#{eventMB.reset}"
+														ajax="false" />
+												</div>
 											</b:column>
 										</b:row>
 									</div>
 								</b:column>
 								<b:column span="6">
 									<p:gmap center="51.753666, 19.454205" zoom="17" type="hybrid"
-										style="width:200;height:400px" model="#{eventMB.emptyModel}"
+										style="width:400px; height:400px" model="#{eventMB.emptyModel}"
 										onPointClick="handlePointClick(event);" widgetVar="map" />
 
 									<p:dialog widgetVar="dlg" showEffect="fade"

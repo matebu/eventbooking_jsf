@@ -50,10 +50,11 @@ public class EventManagedBean implements Serializable {
 			Event event = new Event();
 			event.setId(getId());
 			event.setName(getName());
-			event.setDate(getDate());
+			event.setDate(new Date(getSelectedDate().getTime()));
 			event.setDescription(getDescription());
 			event.setTicketCount(getTicketCount());
 			event.setPrice(getPrice());
+			event.setPlace(getPlace());
 			event.setLatitude(getLat());
 			event.setLongitude(getLng());
 			getEventService().addEvent(event);
@@ -187,12 +188,12 @@ public class EventManagedBean implements Serializable {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
-	//Calendar 
-	private boolean popup = true; 
-    private String pattern = "dd/MM/yyyy";
-    private Date currentDate;
-    private Date selectedDate;
+
+	// Calendar
+	private boolean popup = true;
+	private String pattern = "dd/MM/yyyy";
+	private java.util.Date currentDate;
+	private java.util.Date selectedDate;
 
 	public boolean isPopup() {
 		return popup;
@@ -210,20 +211,20 @@ public class EventManagedBean implements Serializable {
 		this.pattern = pattern;
 	}
 
-	public Date getCurrentDate() {
+	public java.util.Date getCurrentDate() {
 		return currentDate;
 	}
 
-	public void setCurrentDate(Date currentDate) {
+	public void setCurrentDate(java.util.Date currentDate) {
 		this.currentDate = currentDate;
 	}
 
-	public Date getSelectedDate() {
+	public java.util.Date getSelectedDate() {
 		return selectedDate;
 	}
 
-	public void setSelectedDate(Date selectedDate) {
+	public void setSelectedDate(java.util.Date selectedDate) {
 		this.selectedDate = selectedDate;
 	}
-	
+
 }
