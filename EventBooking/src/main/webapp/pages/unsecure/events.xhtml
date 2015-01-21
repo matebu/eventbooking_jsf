@@ -6,15 +6,92 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:rich="http://richfaces.org/rich"
 	xmlns:sec="http://www.springframework.org/security/tags">
+
 <h:body>
 	<ui:composition template="/pages/template/commonLayout.xhtml">
 		<ui:define name="content">
-			<b:jumbotron>
-				<div style="margin: 25px;">
-					<h2 style="text-align: center;">There are no currently planned events</h2>
+			<div id="j_idt62" class="panel panel-primary">
+				<div class="panel-heading">
+					<h4 class="panel-title">Events and Offers</h4>
 				</div>
-			</b:jumbotron>
+				<div class="panel-body">
+					<h:form>
+						<rich:dataGrid value="#{eventMB.eventListDB}" var="event"
+							columns="3" elements="6">
+							<div class="panel panel-primary" style="width: 100%">
+								<div class="panel panel-primary panel-heading">
+									<h4 class="panel-title">
+										<h:outputText value="#{event.name} (#{event.id})"
+											style="font-weight: bold" />
+									</h4>
+								</div>
+								<div class="panel-body">
+									<b:buttonGroup orientation="vertical">
+										<b:row>
+											<b:column span="4">
+												<h:outputText value="Date:" styleClass="label"
+													style="font-weight: bold; font-size: 12px" />
+											</b:column>
+											<b:column span="7" offset="1">
+												<h:outputText value="#{event.date}" style="font-size: 12px" />
+											</b:column>
+										</b:row>
+										<b:row>
+											<b:column span="4">
+												<h:outputText value="Name:" styleClass="label"
+													style="font-weight: bold; font-size: 12px" />
+											</b:column>
+											<b:column span="7" offset="1">
+												<h:outputText value="#{event.name}" style="font-size: 12px" />
+											</b:column>
+										</b:row>
+										<b:row>
+											<b:column span="4">
+												<h:outputText value="Description:" styleClass="label"
+													style="font-weight: bold; margin-right: 10px; font-size: 12px" />
+											</b:column>
+											<b:column span="7" offset="1">
+												<h:outputText value="#{event.description}"
+													style="font-size: 12px" />
+											</b:column>
+										</b:row>
+										<b:row>
+											<b:column span="4">
+												<h:outputText value="Place:" styleClass="label"
+													style="font-weight: bold; font-size: 12px" />
+											</b:column>
+											<b:column span="7" offset="1">
+												<h:outputText value="#{event.place}" style="font-size: 12px" />
+											</b:column>
+										</b:row>
+										<b:row>
+											<b:column span="5">
+												<h:outputText value="Tickets left:" styleClass="label"
+													style="font-weight: bold; font-size: 12px" />
+											</b:column>
+											<b:column span="7">
+												<h:outputText value="#{event.ticketCount}"
+													style="font-size: 12px" />
+											</b:column>
+										</b:row>
+										<ui:fragment rendered="#{request.userPrincipal != null}">
+											<b:button look="info" value="ORDER NOW !"
+												style="margin-top: 20px;" />
+										</ui:fragment>
+									</b:buttonGroup>
+								</div>
+							</div>
+							<div style="vertical-align: bottom">
+								<f:facet name="footer">
+									<rich:dataScroller></rich:dataScroller>
+								</f:facet>
+							</div>
+						</rich:dataGrid>
+					</h:form>
+				</div>
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>

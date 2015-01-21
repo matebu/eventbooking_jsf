@@ -10,54 +10,61 @@
 <h:body>
 	<ui:composition template="/pages/template/commonLayout.xhtml">
 		<ui:define name="content">
-			<h:form id="form" class="navbar-form navbar-left">
-				<div class="container">
-					<p:dataTable id="tickets1" var="ticket"
-						value="#{ticketMB.ticketList}" editable="true"
-						style="margin-bottom:20px">
+			<h:form id="form" class="navbar-form navbar-left"
+				style="padding: 0px; border-width: 0px; margin: 0px;">
+				<div class="container"
+					style="padding: 0px; border-width: 0px; margin: 0px; width: 121%">
+					<b:row>
+						<b:column span="10">
+							<p:dataTable id="tickets1" var="ticket"
+								value="#{ticketMB.ticketList}" editable="true"
+								style="margin-bottom:20px">
 
-						<p:column headerText="Id" style="width: 65px; text-align: center;">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{ticket.id}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText id="modelInput" value="#{ticket.id}"
-										style="width:100%" />
-								</f:facet>
-							</p:cellEditor>
-						</p:column>
+								<p:column headerText="Id"
+									style="width: 65px; text-align: center;">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{ticket.id}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText id="modelInput" value="#{ticket.id}"
+												style="width:100%" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
 
-						<p:column headerText="Title" style="text-align: center;">
-							<h:outputText value="#{ticket.title}" />
-						</p:column>
+								<p:column headerText="Title" style="text-align: center;">
+									<h:outputText value="#{ticket.title}" />
+								</p:column>
 
-						<p:column headerText="User" style="text-align: center;">
-							<h:outputText value="#{ticket.user.login}" />
-						</p:column>
+								<p:column headerText="User" style="text-align: center;">
+									<h:outputText value="#{ticket.user.login}" />
+								</p:column>
 
-						<p:column headerText="Event" style="text-align: center;">
-							<h:outputText value="#{ticket.event.name}" />
-						</p:column>
+								<p:column headerText="Event" style="text-align: center;">
+									<h:outputText value="#{ticket.event.name}" />
+								</p:column>
 
-						<p:column headerText="Event place" style="text-align: center;">
-							<h:outputText value="#{ticket.event.place}" />
-						</p:column>
+								<p:column headerText="Event place" style="text-align: center;">
+									<h:outputText value="#{ticket.event.place}" />
+								</p:column>
 
-						<p:column headerText="QR code" style="text-align: center;">
-							<p:graphicImage value="#{ticketMB.getCodeFromTicket(ticket)}" />
-						</p:column>
+								<p:column headerText="QR code" style="text-align: center;">
+									<p:graphicImage value="#{ticketMB.getCodeFromTicket(ticket)}" />
+								</p:column>
 
-						<p:column headerText="Delete"
-							style="width: 65px; text-align: center;">
-							<p:commandButton value="X" update="@form"
-								action="#{ticketMB.deleteTicket(ticket)}" />
-						</p:column>
+								<p:column headerText="Delete"
+									style="width: 65px; text-align: center;">
+									<p:commandButton value="X" update="@form"
+										action="#{ticketMB.deleteTicket(ticket)}" />
+								</p:column>
 
-						<p:column style="width:32px">
-							<p:rowEditor />
-						</p:column>
-					</p:dataTable>
+								<p:column style="width:32px">
+									<p:rowEditor />
+								</p:column>
+							</p:dataTable>
+						</b:column>
+					</b:row>
 				</div>
 			</h:form>
 		</ui:define>

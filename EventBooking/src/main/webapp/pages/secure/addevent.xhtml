@@ -76,7 +76,7 @@
 												</div>
 											</b:column>
 											<b:column span="5">
-												<p:inputText id="name" value="#{eventMB.name}">
+												<p:inputText id="name" value="#{eventMB.name}" style="width: 100%">
 													<f:validateLength minimum="1" />
 													<p:ajax event="blur" update="nameMsg" />
 												</p:inputText>
@@ -92,7 +92,7 @@
 												</div>
 											</b:column>
 											<b:column span="5">
-												<p:inputText id="description" value="#{eventMB.description}">
+												<p:inputText id="description" value="#{eventMB.description}" style="width: 100%">
 													<f:validateLength minimum="1" />
 													<p:ajax event="blur" update="descriptionMsg" />
 												</p:inputText>
@@ -108,7 +108,7 @@
 												</div>
 											</b:column>
 											<b:column span="5">
-												<p:inputText id="place" value="#{eventMB.place}">
+												<p:inputText id="place" value="#{eventMB.place}" style="width: 100%">
 													<f:validateLength minimum="1" />
 													<p:ajax event="blur" update="placeMsg" />
 												</p:inputText>
@@ -139,7 +139,7 @@
 											<b:column span="6">
 												<rich:calendar value="#{eventMB.selectedDate}"
 													popup="#{eventMB.popup}" datePattern="#{eventMB.pattern}"
-													cellWidth="25px" cellHeight="25px" style="width:250px" />
+													cellWidth="25px" cellHeight="25px" style="width:100%" />
 											</b:column>
 										</b:row>
 									</div>
@@ -162,7 +162,8 @@
 								</b:column>
 								<b:column span="6">
 									<p:gmap center="51.753666, 19.454205" zoom="17" type="hybrid"
-										style="width:400px; height:400px" model="#{eventMB.emptyModel}"
+										style="width:100%; height:400px"
+										model="#{eventMB.emptyModel}"
 										onPointClick="handlePointClick(event);" widgetVar="map" />
 
 									<p:dialog widgetVar="dlg" showEffect="fade"

@@ -13,6 +13,7 @@
 	<context:spring-configured />
 
 	<!-- Beans Declaration -->
+	<bean id="Category" class="com.ebooking.model.Category" />
 	<bean id="User" class="com.ebooking.model.User" />
 	<bean id="UserRole" class="com.ebooking.model.UserRole" />
 	<bean id="Event" class="com.ebooking.model.Event" />
@@ -60,6 +61,7 @@
 		<property name="dataSource" ref="DataSource" />
 		<property name="annotatedClasses">
 			<list>
+				<value>com.ebooking.model.Category</value>
 				<value>com.ebooking.model.User</value>
 				<value>com.ebooking.model.UserRole</value>
 				<value>com.ebooking.model.Event</value>

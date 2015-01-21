@@ -168,7 +168,7 @@ public class EventManagedBean implements Serializable {
 		return this.eventService;
 	}
 
-	public List<Event> getUserList() {
+	public List<Event> getEventListDB() {
 		eventList = new ArrayList<Event>();
 		eventList.addAll(getEventService().getEvents());
 		return eventList;

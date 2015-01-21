@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ebooking.model.Category;
 import com.ebooking.model.Event;
 
 public class EventDAO implements IEventDAO {
@@ -56,6 +57,33 @@ public class EventDAO implements IEventDAO {
 		List<Event> list = (List<Event>) getSessionFactory()
 				.getCurrentSession().createQuery("from Event").list();
 		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Category getCategory(int id) {
+		List<Category> list = (List<Category>) getSessionFactory()
+				.getCurrentSession().createQuery("from Category where id = ?")
+				.setParameter(0, id).list();
+		return (Category) list.get(0);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Category> getCategories() {
+		List<Category> list = (List<Category>) getSessionFactory()
+				.getCurrentSession().createQuery("from Category").list();
+		return list;
+	}
+
+	public void addCategory(Category category) {
+		getSessionFactory().getCurrentSession().save(category);
+	}
+
+	public void updateCategory(Category category) {
+		getSessionFactory().getCurrentSession().update(category);
+	}
+
+	public void deleteCategory(Category category) {
+		getSessionFactory().getCurrentSession().delete(category);
 	}
 
 }

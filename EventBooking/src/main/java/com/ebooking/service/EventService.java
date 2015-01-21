@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ebooking.dao.IEventDAO;
+import com.ebooking.model.Category;
 import com.ebooking.model.Event;
 
 @Transactional
@@ -48,5 +49,25 @@ public class EventService implements IEventService, Serializable {
 
 	public void setEventDAO(IEventDAO eventDAO) {
 		this.eventDAO = eventDAO;
+	}
+
+	public Category getCategory(int id) {
+		return this.eventDAO.getCategory(id);
+	}
+
+	public List<Category> getCategories() {
+		return this.eventDAO.getCategories();
+	}
+
+	public void addCategory(Category category) {
+		this.eventDAO.addCategory(category);
+	}
+
+	public void updateCategory(Category category) {
+		this.eventDAO.updateCategory(category);
+	}
+
+	public void deleteCategory(Category category) {
+		this.eventDAO.deleteCategory(category);
 	}
 }

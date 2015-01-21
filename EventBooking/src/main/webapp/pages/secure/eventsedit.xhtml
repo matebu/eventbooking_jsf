@@ -10,74 +10,85 @@
 <h:body>
 	<ui:composition template="/pages/template/commonLayout.xhtml">
 		<ui:define name="content">
-			<h:form id="form" class="navbar-form navbar-left">
-				<div class="container">
-					<b:panel title="Event management">
-						<p:commandButton value="Update Changed" update="@form"
-							style="margin-left: 25px;" action="#{eventMB.updateChanged}" />
-					</b:panel>
-					<p:dataTable id="events1" var="event"
-						value="#{eventMB.eventEditList}" editable="true"
-						style="margin-bottom:20px">
+			<h:form id="form" class="navbar-form navbar-left"
+				style="padding: 0px; border-width: 0px; margin: 0px;">
+				<div class="container"
+					style="padding: 0px; border-width: 0px; margin: 0px; width: 121%">
+					<b:row>
+						<b:column span="10">
+							<b:panel title="Event management">
+								<p:commandButton value="Update Changed" update="@form"
+									style="margin-left: 25px;" action="#{eventMB.updateChanged}" />
+							</b:panel>
+						</b:column>
+					</b:row>
+					<b:row>
+						<b:column span="10">
+							<p:dataTable id="events1" var="event"
+								value="#{eventMB.eventEditList}" editable="true"
+								style="margin-bottom:20px">
 
-						<p:column headerText="Id" style="width: 65px; text-align: center;">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{event.id}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText id="modelInput" value="#{event.id}"
-										style="width:100%" />
-								</f:facet>
-							</p:cellEditor>
-						</p:column>
+								<p:column headerText="Id"
+									style="width: 65px; text-align: center;">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{event.id}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText id="modelInput" value="#{event.id}"
+												style="width:100%" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
 
-						<p:column headerText="Name" style="text-align: center;">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{event.name}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText value="#{event.name}" style="width:100%"
-										label="Name" />
-								</f:facet>
-							</p:cellEditor>
-						</p:column>
+								<p:column headerText="Name" style="text-align: center;">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{event.name}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText value="#{event.name}" style="width:100%"
+												label="Name" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
 
-						<p:column headerText="Description" style="text-align: center;">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{event.description}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText value="#{event.description}" style="width:100%"
-										label="Description" />
-								</f:facet>
-							</p:cellEditor>
-						</p:column>
+								<p:column headerText="Description" style="text-align: center;">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{event.description}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText value="#{event.description}" style="width:100%"
+												label="Description" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
 
-						<p:column headerText="Ticket Count" style="text-align: center;">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{event.ticketCount}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText value="#{event.ticketCount}" style="width:100%"
-										label="Ticket Count" />
-								</f:facet>
-							</p:cellEditor>
-						</p:column>
+								<p:column headerText="Ticket Count" style="text-align: center;">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{event.ticketCount}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText value="#{event.ticketCount}" style="width:100%"
+												label="Ticket Count" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
 
-						<p:column headerText="Delete"
-							style="width: 65px; text-align: center;">
-							<p:commandButton value="X" update="@form"
-								action="#{eventMB.deleteEvent(event)}" />
-						</p:column>
+								<p:column headerText="Delete"
+									style="width: 65px; text-align: center;">
+									<p:commandButton value="X" update="@form"
+										action="#{eventMB.deleteEvent(event)}" />
+								</p:column>
 
-						<p:column style="width:32px">
-							<p:rowEditor />
-						</p:column>
-					</p:dataTable>
+								<p:column style="width:32px">
+									<p:rowEditor />
+								</p:column>
+							</p:dataTable>
+						</b:column>
+					</b:row>
 				</div>
 			</h:form>
 		</ui:define>

@@ -23,67 +23,70 @@
 </head>
 <body>
 	<ui:composition>
-		<b:navBar brand="Home"
-			brandHref="/EventBooking/pages/unsecure/index.jsf">
-			<div class="container">
-				<ul class="nav navbar-nav">
-					<ui:fragment rendered="#{request.userPrincipal != null}">
-						<b:dropMenu value="User profile">
-							<b:navLink header="Profile information"></b:navLink>
-							<b:navLink value="Edit profile" href="#"></b:navLink>
-							<b:navLink></b:navLink>
-							<b:navLink header="Orders management"></b:navLink>
-							<b:navLink value="Valid orders" href="#"></b:navLink>
-							<b:navLink value="Orders history" href="#"></b:navLink>
-						</b:dropMenu>
-					</ui:fragment>
-					<b:navLink value="Events" href="/pages/unsecure/events.jsf"></b:navLink>
-					<sec:authorize access="hasRole('ROLE_ADMIN')">
-						<b:dropMenu value="Administration">
-							<b:navLink header="Events"></b:navLink>
-							<b:navLink value="Add event" href="/pages/secure/addevent.jsf"></b:navLink>
-							<b:navLink value="Event list management"
-								href="/pages/secure/eventsedit.jsf"></b:navLink>
-							<b:navLink></b:navLink>
-							<b:navLink header="Other"></b:navLink>
-							<b:navLink value="Tickets management"
-								href="/pages/secure/tickets.jsf"></b:navLink>
-							<b:navLink value="User management" href="/pages/secure/users.jsf"></b:navLink>
-						</b:dropMenu>
-					</sec:authorize>
-				</ul>
-				<ul class="nav navbar-nav pull-right">
-					<ui:fragment rendered="#{request.userPrincipal == null}">
-						<h:form class="navbar-form navbar-left" role="search">
-							<div class="form-group">
-								<p:inputText id="login" value="#{loginMB.login}"
-									style="width: 120px;" />
-								<p:watermark for="login" value="Username"></p:watermark>
-							</div>
-							<div class="form-group" style="margin-right: 10px;">
-								<p:password style="width: 120px;" id="password"
-									value="#{loginMB.password}">
-									<p:ajax disabled="true" />
-								</p:password>
-								<p:watermark for="password" value="Password"></p:watermark>
-							</div>
-							<b:commandButton value="Login" action="#{loginMB.loginUser}"
-								styleClass="btn btn-default"></b:commandButton>
-						</h:form>
-						<b:navLink value="Register" href="/pages/unsecure/register.jsf" />
-					</ui:fragment>
-					<ui:fragment rendered="#{request.userPrincipal != null}">
-						<h:form class="navbar-form navbar-left">
-							<div class="form-group" style="margin-right: 45px;">
-								<b> <b:navLink value="#{request.userPrincipal.name}" /></b>
-							</div>
-							<b:commandButton value="Logout" action="#{loginMB.logout}"
-								styleClass="btn btn-default"></b:commandButton>
-						</h:form>
-					</ui:fragment>
-				</ul>
-			</div>
-		</b:navBar>
+		<div style="margin-bottom: 80px">
+			<b:navBar brand="Home"
+				brandHref="/EventBooking/pages/unsecure/index.jsf" fixed="top">
+				<div class="container" style="width: 100%">
+					<ul class="nav navbar-nav">
+						<ui:fragment rendered="#{request.userPrincipal != null}">
+							<b:dropMenu value="User profile">
+								<b:navLink header="Profile information"></b:navLink>
+								<b:navLink value="Edit profile" href="#"></b:navLink>
+								<b:navLink></b:navLink>
+								<b:navLink header="Orders management"></b:navLink>
+								<b:navLink value="Valid orders" href="#"></b:navLink>
+								<b:navLink value="Orders history" href="#"></b:navLink>
+							</b:dropMenu>
+						</ui:fragment>
+						<b:navLink value="Events" href="/pages/unsecure/events.jsf"></b:navLink>
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<b:dropMenu value="Administration">
+								<b:navLink header="Events"></b:navLink>
+								<b:navLink value="Add event" href="/pages/secure/addevent.jsf"></b:navLink>
+								<b:navLink value="Event list management"
+									href="/pages/secure/eventsedit.jsf"></b:navLink>
+								<b:navLink></b:navLink>
+								<b:navLink header="Other"></b:navLink>
+								<b:navLink value="Tickets management"
+									href="/pages/secure/tickets.jsf"></b:navLink>
+								<b:navLink value="User management"
+									href="/pages/secure/users.jsf"></b:navLink>
+							</b:dropMenu>
+						</sec:authorize>
+					</ul>
+					<ul class="nav navbar-nav pull-right">
+						<ui:fragment rendered="#{request.userPrincipal == null}">
+							<h:form class="navbar-form navbar-left" role="search">
+								<div class="form-group">
+									<p:inputText id="login" value="#{loginMB.login}"
+										style="width: 120px;" />
+									<p:watermark for="login" value="Username"></p:watermark>
+								</div>
+								<div class="form-group" style="margin-right: 10px;">
+									<p:password style="width: 120px;" id="password"
+										value="#{loginMB.password}">
+										<p:ajax disabled="true" />
+									</p:password>
+									<p:watermark for="password" value="Password"></p:watermark>
+								</div>
+								<b:commandButton value="Login" action="#{loginMB.loginUser}"
+									styleClass="btn btn-default"></b:commandButton>
+							</h:form>
+							<b:navLink value="Register" href="/pages/unsecure/register.jsf" />
+						</ui:fragment>
+						<ui:fragment rendered="#{request.userPrincipal != null}">
+							<h:form class="navbar-form navbar-left">
+								<div class="form-group" style="margin-right: 45px;">
+									<b> <b:navLink value="#{request.userPrincipal.name}" /></b>
+								</div>
+								<b:commandButton value="Logout" action="#{loginMB.logout}"
+									styleClass="btn btn-default"></b:commandButton>
+							</h:form>
+						</ui:fragment>
+					</ul>
+				</div>
+			</b:navBar>
+		</div>
 	</ui:composition>
 </body>
 </html>

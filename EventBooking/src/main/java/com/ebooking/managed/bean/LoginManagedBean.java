@@ -12,46 +12,49 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-@ManagedBean(name="loginMB")
+@ManagedBean(name = "loginMB")
 @RequestScoped
 public class LoginManagedBean implements Serializable {
-  
+
 	private static final long serialVersionUID = 1L;
-	
-	private String login; 
-    private String password;
 
-    @ManagedProperty(value="#{authenticationManager}")
-    private AuthenticationManager authenticationManager = null;
+	private String login;
+	private String password;
 
-    public String loginUser() {
-        try {			
-            Authentication request = new UsernamePasswordAuthenticationToken(this.getLogin(), this.getPassword());
-            Authentication result = authenticationManager.authenticate(request);
-            SecurityContextHolder.getContext().setAuthentication(result);
-            return "/pages/secure/tickets.jsf";
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-            return "/pages/unsecure/index.jsf";
-        }
-    }
+	@ManagedProperty(value = "#{authenticationManager}")
+	private AuthenticationManager authenticationManager = null;
 
-    public String cancel() {
-        return null;
-    }
+	@SuppressWarnings("finally")
+	public String loginUser() {
+		try {
+			Authentication request = new UsernamePasswordAuthenticationToken(
+					this.getLogin(), this.getPassword());
+			Authentication result = authenticationManager.authenticate(request);
+			SecurityContextHolder.getContext().setAuthentication(result);
+		} catch (AuthenticationException e) {
+			e.printStackTrace();
+		} finally {
+			return "/pages/unsecure/index.jsf";
+		}
+	}
 
-    public String logout(){
-        SecurityContextHolder.clearContext();
-        return "/pages/unsecure/index.jsf";
-    }
- 
-    public AuthenticationManager getAuthenticationManager() {
-        return authenticationManager;
-    }
+	public String cancel() {
+		return null;
+	}
 
-    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
-    }
+	public String logout() {
+		SecurityContextHolder.clearContext();
+		return "/pages/unsecure/index.jsf";
+	}
+
+	public AuthenticationManager getAuthenticationManager() {
+		return authenticationManager;
+	}
+
+	public void setAuthenticationManager(
+			AuthenticationManager authenticationManager) {
+		this.authenticationManager = authenticationManager;
+	}
 
 	public String getLogin() {
 		return login;

@@ -10,162 +10,174 @@
 <h:body>
 	<ui:composition template="/pages/template/commonLayout.xhtml">
 		<ui:define name="content">
-			<h:form id="form" class="navbar-form navbar-left">
-				<div class="container">
-					<b:panel title="User management">
-						<div class="form-group">
-							<div class="panel-body">
-								<div style="margin: 10px">
-									<b:row styleClass="show-grid">
-										<b:column span="5">
-											<p:inputText id="login" value="#{userMB.login}">
-												<f:validateLength minimum="3" />
-												<p:ajax event="blur" update="loginMsg" />
-											</p:inputText>
-											<p:watermark for="login" value="Login"></p:watermark>
-										</b:column>
-										<b:column span="7">
-											<p:message id="loginMsg" for="login" />
-										</b:column>
-									</b:row>
+			<h:form id="form" class="navbar-form navbar-left"
+				style="padding: 0px; border-width: 0px; margin: 0px;">
+				<div class="container"
+					style="padding: 0px; border-width: 0px; margin: 0px; width: 121%">
+					<b:row>
+						<b:column span="10">
+							<b:panel title="User management">
+								<div class="form-group">
+									<div class="panel-body">
+										<div style="margin: 10px">
+											<b:row styleClass="show-grid">
+												<b:column span="5">
+													<p:inputText id="login" value="#{userMB.login}">
+														<f:validateLength minimum="3" />
+														<p:ajax event="blur" update="loginMsg" />
+													</p:inputText>
+													<p:watermark for="login" value="Login"></p:watermark>
+												</b:column>
+												<b:column span="7">
+													<p:message id="loginMsg" for="login" />
+												</b:column>
+											</b:row>
+										</div>
+										<div style="margin: 10px">
+											<b:row styleClass="show-grid">
+												<b:column span="5">
+													<p:password id="password" value="#{userMB.password}">
+														<f:validateLength minimum="5" />
+														<p:ajax event="blur" update="passwordMsg" />
+													</p:password>
+													<p:watermark for="password" value="Password"></p:watermark>
+												</b:column>
+												<b:column span="7">
+													<p:message id="passwordMsg" for="password" />
+												</b:column>
+											</b:row>
+										</div>
+										<div style="margin: 10px">
+											<b:row styleClass="show-grid">
+												<b:column span="5">
+													<p:inputText id="email" value="#{userMB.email}">
+														<f:validateLength minimum="5" />
+														<p:ajax event="blur" update="emailMsg" />
+													</p:inputText>
+													<p:watermark for="email" value="Email"></p:watermark>
+												</b:column>
+												<b:column span="7">
+													<p:message id="emailMsg" for="email" />
+												</b:column>
+											</b:row>
+										</div>
+										<div style="margin: 10px">
+											<b:row styleClass="show-grid">
+												<b:column span="5">
+													<p:inputText id="name" value="#{userMB.name}">
+														<f:validateLength minimum="3" />
+														<p:ajax event="blur" update="nameMsg" />
+													</p:inputText>
+													<p:watermark for="name" value="Name"></p:watermark>
+												</b:column>
+												<b:column span="7">
+													<p:message id="nameMsg" for="name" />
+												</b:column>
+											</b:row>
+										</div>
+										<div style="margin: 10px">
+											<b:row styleClass="show-grid">
+												<b:column span="5">
+													<p:inputText id="surname" value="#{userMB.surname}">
+														<f:validateLength minimum="2" />
+														<p:ajax event="blur" update="surnameMsg" />
+													</p:inputText>
+													<p:watermark for="surname" value="Surname"></p:watermark>
+												</b:column>
+												<b:column span="7">
+													<p:message id="surnameMsg" for="surname" />
+												</b:column>
+											</b:row>
+										</div>
+									</div>
+									<p:commandButton value="Update Changed" update="@form"
+										style="margin-left: 25px;" disabled="#{userMB.editable}"
+										action="#{userMB.updateChanged}" />
+									<p:commandButton id="addUser" value="Add User"
+										style="margin-left: 20px;" action="#{userMB.addUser}"
+										ajax="false" />
 								</div>
-								<div style="margin: 10px">
-									<b:row styleClass="show-grid">
-										<b:column span="5">
-											<p:password id="password" value="#{userMB.password}">
-												<f:validateLength minimum="5" />
-												<p:ajax event="blur" update="passwordMsg" />
-											</p:password>
-											<p:watermark for="password" value="Password"></p:watermark>
-										</b:column>
-										<b:column span="7">
-											<p:message id="passwordMsg" for="password" />
-										</b:column>
-									</b:row>
-								</div>
-								<div style="margin: 10px">
-									<b:row styleClass="show-grid">
-										<b:column span="5">
-											<p:inputText id="email" value="#{userMB.email}">
-												<f:validateLength minimum="5" />
-												<p:ajax event="blur" update="emailMsg" />
-											</p:inputText>
-											<p:watermark for="email" value="Email"></p:watermark>
-										</b:column>
-										<b:column span="7">
-											<p:message id="emailMsg" for="email" />
-										</b:column>
-									</b:row>
-								</div>
-								<div style="margin: 10px">
-									<b:row styleClass="show-grid">
-										<b:column span="5">
-											<p:inputText id="name" value="#{userMB.name}">
-												<f:validateLength minimum="3" />
-												<p:ajax event="blur" update="nameMsg" />
-											</p:inputText>
-											<p:watermark for="name" value="Name"></p:watermark>
-										</b:column>
-										<b:column span="7">
-											<p:message id="nameMsg" for="name" />
-										</b:column>
-									</b:row>
-								</div>
-								<div style="margin: 10px">
-									<b:row styleClass="show-grid">
-										<b:column span="5">
-											<p:inputText id="surname" value="#{userMB.surname}">
-												<f:validateLength minimum="2" />
-												<p:ajax event="blur" update="surnameMsg" />
-											</p:inputText>
-											<p:watermark for="surname" value="Surname"></p:watermark>
-										</b:column>
-										<b:column span="7">
-											<p:message id="surnameMsg" for="surname" />
-										</b:column>
-									</b:row>
-								</div>
-							</div>
-							<p:commandButton value="Update Changed" update="@form"
-								style="margin-left: 25px;" disabled="#{userMB.editable}"
-								action="#{userMB.updateChanged}" />
-							<p:commandButton id="addUser" value="Add User"
-								style="margin-left: 20px;" action="#{userMB.addUser}"
-								ajax="false" />
-						</div>
-					</b:panel>
-					<p:dataTable id="users1" var="user" value="#{userMB.userEditList}"
-						editable="true" style="margin-bottom:20px">
+							</b:panel>
+						</b:column>
+					</b:row>
+					<b:row>
+						<b:column span="10">
+							<p:dataTable id="users1" var="user"
+								value="#{userMB.userEditList}" editable="true"
+								style="margin-bottom:20px">
 
-						<p:column headerText="Id" style="width: 65px; text-align: center;">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{user.id}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText id="modelInput" value="#{user.id}"
-										style="width:100%" />
-								</f:facet>
-							</p:cellEditor>
-						</p:column>
+								<p:column headerText="Id"
+									style="width: 65px; text-align: center;">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{user.id}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText id="modelInput" value="#{user.id}"
+												style="width:100%" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
 
-						<p:column headerText="Login" style="text-align: center;">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{user.login}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText value="#{user.login}" style="width:100%"
-										label="Login" />
-								</f:facet>
-							</p:cellEditor>
-						</p:column>
+								<p:column headerText="Login" style="text-align: center;">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{user.login}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText value="#{user.login}" style="width:100%"
+												label="Login" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
 
-						<p:column headerText="Email" style="text-align: center;">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{user.email}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText value="#{user.email}" style="width:100%"
-										label="Email" />
-								</f:facet>
-							</p:cellEditor>
-						</p:column>
+								<p:column headerText="Email" style="text-align: center;">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{user.email}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText value="#{user.email}" style="width:100%"
+												label="Email" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
 
-						<p:column headerText="Name" style="text-align: center;">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{user.name}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText value="#{user.name}" style="width:100%"
-										label="Name" />
-								</f:facet>
-							</p:cellEditor>
-						</p:column>
+								<p:column headerText="Name" style="text-align: center;">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{user.name}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText value="#{user.name}" style="width:100%"
+												label="Name" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
 
-						<p:column headerText="Surname" style="text-align: center;">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{user.surname}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText value="#{user.surname}" style="width:100%"
-										label="Surname" />
-								</f:facet>
-							</p:cellEditor>
-						</p:column>
-						<p:column headerText="Delete"
-							style="width: 65px; text-align: center;">
-							<p:commandButton value="X" update="@form"
-								action="#{userMB.deleteUser(user)}" />
-						</p:column>
+								<p:column headerText="Surname" style="text-align: center;">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{user.surname}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText value="#{user.surname}" style="width:100%"
+												label="Surname" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="Delete"
+									style="width: 65px; text-align: center;">
+									<p:commandButton value="X" update="@form"
+										action="#{userMB.deleteUser(user)}" />
+								</p:column>
 
-						<p:column style="width:32px">
-							<p:rowEditor />
-						</p:column>
-					</p:dataTable>
+								<p:column style="width:32px">
+									<p:rowEditor />
+								</p:column>
+							</p:dataTable>
+						</b:column>
+					</b:row>
 				</div>
 			</h:form>
 		</ui:define>
